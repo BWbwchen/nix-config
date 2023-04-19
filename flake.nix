@@ -15,7 +15,7 @@
       user = "bw";
       configDir = "nix-config";
     in {
-      nixosConfigurations = import ./nixos {
+      nixosConfigurations = import ./hosts {
         inherit (nixpkgs) lib;
         inherit inputs nixpkgs home-manager user configDir;
       };

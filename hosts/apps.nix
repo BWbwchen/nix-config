@@ -1,15 +1,21 @@
 { config, pkgs, ... }:
 
 {
-#  imports = [
-#    ../../modules/git
-#  ];
+  imports = [
+    ../modules/git
+  ];
   home.packages = with pkgs; [
     # Command line utilities
+    vim
+    neovim
+    wget
+    curl
+    htop
 
     # Programming languages
+    gcc
 
-    # Developement tools
+    # Games
   ];
 }
 

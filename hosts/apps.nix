@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../modules/git
+    ../modules/git.nix
   ];
   home.packages = with pkgs; [
     # Command line utilities

@@ -20,5 +20,12 @@
   programs.bash = {
     enable = true;
   };
+
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+    '';
+  };
 }
 

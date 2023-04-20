@@ -5,6 +5,7 @@
     ../modules/git.nix
     ../modules/zsh.nix
     ../modules/tmux
+    ../modules/emacs
   ];
   home.packages = with pkgs; [
     # Command line utilities

@@ -19,6 +19,9 @@
 
     # Programming languages
     gcc
+    python3
+    nodejs
+    
 
     # Games
   ];

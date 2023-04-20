@@ -22,6 +22,11 @@
     gcc
     python3
     nodejs
+    cargo
+    rustc
+    gnumake
+    gdb
+    cmake
     
 
     # Games

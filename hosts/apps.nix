@@ -4,6 +4,7 @@
   imports = [
     ../modules/git.nix
     ../modules/zsh.nix
+    ../modules/tmux
   ];
   home.packages = with pkgs; [
     # Command line utilities

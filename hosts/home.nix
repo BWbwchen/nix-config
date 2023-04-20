@@ -14,7 +14,7 @@
     homeDirectory = "/home/${user}";
 
     stateVersion = "22.11";
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
   };
 
   programs.bash = {

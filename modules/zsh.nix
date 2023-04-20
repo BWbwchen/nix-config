@@ -14,6 +14,10 @@
  	theme = "af-magic";
         plugins = [ "git" "fzf" ];
       };
+      
+      shellAliases = {
+	vim = "lvim";
+      };
     };
     
     fzf = {

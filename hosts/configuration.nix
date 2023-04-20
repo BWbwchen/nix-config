@@ -35,6 +35,7 @@
     description = "${user}";
     extraGroups = [ "wheel" "networkmanager" ];
     initialPassword = "password";
+    shell = pkgs.zsh;
   };
 
   nixpkgs.config.allowUnfree = true;

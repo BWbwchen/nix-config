@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/git.nix
+    ../modules/zsh.nix
   ];
   home.packages = with pkgs; [
     # Command line utilities
@@ -11,6 +12,10 @@
     wget
     curl
     htop
+    neofetch
+    unzip
+    ripgrep
+    
 
     # Programming languages
     gcc

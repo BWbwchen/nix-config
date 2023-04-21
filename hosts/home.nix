@@ -3,6 +3,7 @@
 {
   imports = [
     ./apps.nix
+    ../modules/emacs
   ];
 
   programs.home-manager.enable = true;
@@ -14,7 +15,11 @@
     homeDirectory = "/home/${user}";
 
     stateVersion = "22.11";
-    sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+    sessionPath = [ 
+        "$HOME/.local/bin" 
+        "$HOME/.cargo/bin" 
+        "$HOME/.emacs.d/bin" 
+    ];
   };
 
   programs.bash = {
@@ -24,7 +29,7 @@
   programs.zsh = {
     enable = true;
     initExtra = ''
-      export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+      export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin:$PATH
     '';
   };
 }

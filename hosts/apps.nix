@@ -16,6 +16,7 @@
     neofetch
     unzip
     ripgrep
+    file
     
 
     # Programming languages

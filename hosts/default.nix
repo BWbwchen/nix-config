@@ -7,29 +7,23 @@ let
     config.allowUnfree = true;
   };
   lib = nixpkgs.lib;
-  hmImports = [
-    (import ./home.nix)
-  ];
+  hmImports = [ (import ./home.nix) ];
   hmArgs = { inherit user configDir; };
-in
-{
+in {
   vm = lib.nixosSystem {
     inherit system;
     specialArgs = { inherit user; };
     modules = [
       ./vm
       ./configuration.nix
+      { networking.hostName = "${user}-vm"; }
+      home-manager.nixosModules.home-manager
       {
-        networking.hostName = "${user}-vm";
-      }
-      home-manager.nixosModules.home-manager {
         home-manager = {
           useUserPackages = true;
           extraSpecialArgs = hmArgs;
           users.${user} = {
-            imports = hmImports ++ [
-		      (import ./vm/home.nix)
-		    ];
+            imports = hmImports ++ [ (import ./vm/home.nix) ];
           };
         };
       }

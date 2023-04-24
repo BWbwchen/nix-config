@@ -1,11 +1,10 @@
 { ... }:
 
 {
-  imports = 
-    [
-	# include the hardware setting
-        ./hardware-configuration.nix 
-    ];
+  imports = [
+    # include the hardware setting
+    ./hardware-configuration.nix
+  ];
 
   services.xserver = {
     enable = true;

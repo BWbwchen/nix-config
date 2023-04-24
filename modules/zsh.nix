@@ -9,19 +9,15 @@
       autocd = true;
       enableCompletion = true;
 
-      oh-my-zsh = {                               # Extra plugins for zsh
+      oh-my-zsh = { # Extra plugins for zsh
         enable = true;
- 	theme = "af-magic";
+        theme = "af-magic";
         plugins = [ "git" "fzf" ];
       };
-      
-      shellAliases = {
-	vim = "lvim";
-      };
+
+      shellAliases = { vim = "lvim"; };
     };
-    
-    fzf = {
-	enable = true;
-    };
+
+    fzf = { enable = true; };
   };
 }

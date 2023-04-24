@@ -1,10 +1,7 @@
 { config, pkgs, user, ... }:
 
 {
-  imports = [
-    ./apps.nix
-    ../modules/emacs
-  ];
+  imports = [ ./apps.nix ../modules/emacs ];
 
   programs.home-manager.enable = true;
 
@@ -15,16 +12,11 @@
     homeDirectory = "/home/${user}";
 
     stateVersion = "22.11";
-    sessionPath = [ 
-        "$HOME/.local/bin" 
-        "$HOME/.cargo/bin" 
-        "$HOME/.emacs.d/bin" 
-    ];
+    sessionPath =
+      [ "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.emacs.d/bin" ];
   };
 
-  programs.bash = {
-    enable = true;
-  };
+  programs.bash = { enable = true; };
 
   programs.zsh = {
     enable = true;

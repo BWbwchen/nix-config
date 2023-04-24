@@ -6,7 +6,7 @@
     # package = pkgs.emacs-gtk;
   };
   # services.emacs.enable = true;
-  home.activation.doom = lib.hm.dag.entryAfter["writeBoundary"] ''
+  home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     EMACS="$HOME/.emacs.d"
     DOOM="$HOME/.doom.d"
     if [ ! -d "$EMACS" ]; then

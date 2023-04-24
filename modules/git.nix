@@ -2,22 +2,20 @@
 
 {
   programs.git = {
-#    package = pkgs.gitAndTools.gitFull;
+    #    package = pkgs.gitAndTools.gitFull;
     enable = true;
     userName = "BWbwchen";
     userEmail = "tim.chenbw@gmail.com";
-    ignores = [
-   	".direnv" 
-    ];
+    ignores = [ ".direnv" ];
 
     lfs.enable = true;
 
     extraConfig = {
 
-	core = {
-	    editor = "nvim";
-	    ignorecase = false;	
-	};
+      core = {
+        editor = "nvim";
+        ignorecase = false;
+      };
 
     };
   };

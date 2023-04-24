@@ -1,22 +1,17 @@
 { config, pkgs, ... }:
 
 with pkgs;
-let default-python = python3.withPackages ( python-packages:
-        with python-packages; [
-            pip
-        ]);
+let
+  default-python =
+    python3.withPackages (python-packages: with python-packages; [ pip ]);
 in {
   nixpkgs.config.allowUnfree = true;
-  imports = [
-    ../modules/git.nix
-    ../modules/zsh.nix
-    ../modules/tmux
-    ../modules/emacs
-  ];
+  imports =
+    [ ../modules/git.nix ../modules/zsh.nix ../modules/tmux ../modules/emacs ];
   home.packages = with pkgs; [
     # GUI utilities
     arandr # visual front end for xrandr
-      
+
     # Command line utilities
     neovim
     wget
@@ -33,7 +28,6 @@ in {
     tree
     gnupg
     feh
-    
 
     # Programming languages
     gcc
@@ -45,7 +39,6 @@ in {
     gnumake
     gdb
     cmake
-    
 
     # Games
   ];

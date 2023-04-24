@@ -1,15 +1,16 @@
 { config, pkgs, ... }:
 
 {
-#  imports = [
-#    ../../modules/git
-#  ];
-  home.packages = with pkgs; [
-    # Command line utilities
+  #  imports = [
+  #    ../../modules/git
+  #  ];
+  home.packages = with pkgs;
+    [
+      # Command line utilities
 
-    # Programming languages
+      # Programming languages
 
-    # Developement tools
-  ];
+      # Developement tools
+    ];
 }
 

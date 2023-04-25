@@ -1,9 +1,6 @@
 { ... }:
 
 {
-  imports = [
-    (import ./apps.nix)
-    #(import ./i3)
-  ];
+  imports = [ (import ./apps.nix) ];
 }
 

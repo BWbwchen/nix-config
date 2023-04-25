@@ -4,13 +4,8 @@
   imports = [
     # include the hardware setting
     ./hardware-configuration.nix
+    ./gui.nix
   ];
-
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
-  };
 
   services.blueman.enable = true;
 

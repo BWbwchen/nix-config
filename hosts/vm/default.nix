@@ -4,8 +4,15 @@
   imports = [
     # include the hardware setting
     ./hardware-configuration.nix
-    ./gui.nix
+    ../../modules/i3
   ];
+
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbVariant = "";
+    xkbOptions = "ctrl:nocaps";
+  };
 
   services.blueman.enable = true;
 

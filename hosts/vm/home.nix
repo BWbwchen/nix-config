@@ -1,6 +1,15 @@
-{ ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [ (import ./apps.nix) ];
+  home.packages = with pkgs; [
+    # For i3
+    redshift
+    polybar
+    # Command line utilities
+
+    # Programming languages
+
+    # Developement tools
+  ];
 }
 

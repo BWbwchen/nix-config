@@ -40,7 +40,11 @@ in {
     gdb
     cmake
 
-    # Games
+    # Other
+    firefox
+    google-chrome
+    brave
+    logseq
   ];
 }
 

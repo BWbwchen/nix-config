@@ -8,20 +8,17 @@ let
   };
   lib = nixpkgs.lib;
   hmImports = [ (import ./home.nix) ];
-  hmArgs = { inherit user configDir; };
 in {
   vm = lib.nixosSystem {
     inherit system;
     specialArgs = { inherit user; };
     modules = [
       ./vm
-      ./configuration.nix
-      { networking.hostName = "${user}-vm"; }
       home-manager.nixosModules.home-manager
       {
         home-manager = {
           useUserPackages = true;
-          extraSpecialArgs = hmArgs;
+          extraSpecialArgs = { inherit user configDir; };
           users.${user} = {
             imports = hmImports ++ [ (import ./vm/home.nix) ];
           };

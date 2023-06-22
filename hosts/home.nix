@@ -1,7 +1,7 @@
 { config, pkgs, user, ... }:
 
 {
-  imports = [ ./apps.nix ../modules/emacs ];
+  imports = [ ./apps.nix ];
 
   programs.home-manager.enable = true;
 

@@ -6,12 +6,18 @@ let
     python3.withPackages (python-packages: with python-packages; [ pip ]);
 in {
   nixpkgs.config.allowUnfree = true;
-  imports =
-    [ ../modules/git.nix ../modules/zsh.nix ../modules/tmux ../modules/emacs ];
+  imports = [
+    ../modules/git.nix # git
+    ../modules/zsh.nix
+    ../modules/tmux
+    ../modules/emacs
+    ../modules/firefox
+  ];
   home.packages = with pkgs; [
     # GUI utilities
     arandr # visual front end for xrandr
     libsForQt5.gwenview
+    libsForQt5.kde-gtk-config
 
     # Command line utilities
     neovim
@@ -43,7 +49,6 @@ in {
     cmake
 
     # Other
-    firefox
     google-chrome
     brave
     logseq

@@ -43,7 +43,10 @@
     gvfs.enable = true; # Nautilus file manager.
     joycond.enable = true;
     blueman.enable = true;
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      forwardX11 = true;
+    };
     qemuGuest.enable = true;
     dbus = {
       enable = true;

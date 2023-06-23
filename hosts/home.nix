@@ -1,7 +1,7 @@
 { config, pkgs, user, ... }:
 
 {
-  imports = [ ./apps.nix ];
+  imports = [ ./apps.nix ../modules/i3 ];
 
   programs.home-manager.enable = true;
 

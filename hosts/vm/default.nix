@@ -39,6 +39,9 @@
     };
   };
 
+  programs.dconf.enable = true;
+  # services.dbus.enable = true;
+  # services.dbus.packages = with pkgs; [ dconf ];
   services = {
     gvfs.enable = true; # Nautilus file manager.
     joycond.enable = true;

@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     # For i3
     redshift
-    polybar
+    pulseaudioFull # for pacmd, voice control
     # Command line utilities
 
     # Programming languages

@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ../../modules/polybar # polybar
+    ../../modules/i3 # i3
+    ../../modules/redshift
+  ];
   home.packages = with pkgs; [
     # For i3
     pulseaudioFull # for pacmd, voice control

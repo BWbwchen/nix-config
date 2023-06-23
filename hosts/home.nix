@@ -1,7 +1,12 @@
 { config, pkgs, user, ... }:
 
 {
-  imports = [ ./apps.nix ../modules/polybar ../modules/i3 ];
+  imports = [
+    ./apps.nix
+    ../modules/polybar # polybar
+    ../modules/i3 # i3
+    ../modules/redshift
+  ];
 
   programs.home-manager.enable = true;
 

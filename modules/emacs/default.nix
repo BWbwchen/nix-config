@@ -3,7 +3,7 @@
 {
   programs.emacs = {
     enable = true;
-    # package = pkgs.emacs-gtk;
+    package = pkgs.emacs-gtk;
   };
   # services.emacs.enable = true;
   home.activation.doom = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

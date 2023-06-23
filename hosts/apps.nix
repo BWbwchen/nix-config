@@ -28,6 +28,7 @@ in {
     tree
     gnupg
     feh
+    wakatime
 
     # Programming languages
     gcc

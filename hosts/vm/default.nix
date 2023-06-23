@@ -91,8 +91,8 @@
   hardware = {
     pulseaudio.enable = true;
     bluetooth.enable = true;
-    ledger.enable = true; # Allow ledger devices to connect.
-    opengl.driSupport32Bit = true; # Required for steam.
+    # ledger.enable = true; # Allow ledger devices to connect.
+    # opengl.driSupport32Bit = true; # Required for steam.
   };
 
   # Enable docker in rootless mode.

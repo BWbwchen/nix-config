@@ -11,6 +11,7 @@ in {
   home.packages = with pkgs; [
     # GUI utilities
     arandr # visual front end for xrandr
+    libsForQt5.gwenview
 
     # Command line utilities
     neovim
@@ -46,6 +47,8 @@ in {
     google-chrome
     brave
     logseq
+    # telegram-desktop # not work in 22.11 only work in 23.05
+    tdesktop
   ];
 }
 

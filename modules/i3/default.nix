@@ -2,46 +2,10 @@
 
 let modifier = "Mod1";
 in {
-  # programs.thunar.plugins = with pkgs.xfce; [
-  #   thunar-archive-plugin
-  #   thunar-volman
-  # ];
-  # services.gvfs.enable = true; # Mount, trash, and other functionalities
-  # services.xserver = {
-  #   # Configure keymap in X11
-  #   layout = "us";
-  #   xkbVariant = "";
-  #   xkbOptions = "ctrl:nocaps";
-  #   displayManager = { defaultSession = "none+i3"; };
-  #   windowManager.i3 = {
-  #     enable = true;
-  #     package = pkgs.i3-gaps;
-  #     configFile = ./config;
-  #     extraPackages = with pkgs; [
-  #       rofi # application launcher, the same as dmenu
-  #       dunst # notification daemon
-  #       i3blocks # status bar
-  #       i3lock # default i3 screen locker
-  #       i3status # provide information to i3bar
-  #       feh # set wallpaper
-  #       arandr # screen layout manager
-  #       xorg.xbacklight # control screen brightness, the same as light
-  #       xorg.xdpyinfo # get screen information
-  #       sysstat # get system information
-
-  #       xfce.thunar # xfce4's file manager
-  #     ];
-  #   };
-  # };
   xsession = {
     enable = true;
     windowManager.i3 = {
       enable = true;
-      # package = with pkgs; [
-      #   i3-gaps
-      #   gnome.nautilus # file manager
-      #   libsForQt5.spectacle # screen shot
-      # ];
       package = pkgs.i3-gaps;
       config = {
         inherit modifier;
@@ -65,6 +29,10 @@ in {
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
           "${modifier}+r" = "mode resize";
+          "${modifier}+d" = "exec ${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+
+          "${modifier}+Shift+e" =
+            "exec ${pkgs.i3}/bin/i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'";
 
           # Alacritty terminal
           "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
@@ -92,6 +60,29 @@ in {
 
           # File
           "${modifier}+f" = "exec ${pkgs.gnome.nautilus}/bin/nautilus";
+
+          # WorkSpace
+          "${modifier}+1" = "workspace 1";
+          "${modifier}+2" = "workspace 2";
+          "${modifier}+3" = "workspace 3";
+          "${modifier}+4" = "workspace 4";
+          "${modifier}+5" = "workspace 5";
+          "${modifier}+6" = "workspace 6";
+          "${modifier}+7" = "workspace 7";
+          "${modifier}+8" = "workspace 8";
+          "${modifier}+9" = "workspace 9";
+          "${modifier}+0" = "workspace 10";
+
+          "${modifier}+Shift+1" = "move container to workspace 1";
+          "${modifier}+Shift+2" = "move container to workspace 2";
+          "${modifier}+Shift+3" = "move container to workspace 3";
+          "${modifier}+Shift+4" = "move container to workspace 4";
+          "${modifier}+Shift+5" = "move container to workspace 5";
+          "${modifier}+Shift+6" = "move container to workspace 6";
+          "${modifier}+Shift+7" = "move container to workspace 7";
+          "${modifier}+Shift+8" = "move container to workspace 8";
+          "${modifier}+Shift+9" = "move container to workspace 9";
+          "${modifier}+Shift+0" = "move container to workspace 10";
 
           # Audio Volume
           # bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/polybar/scripts/pavolume.sh --up

@@ -40,6 +40,12 @@
   };
 
   programs.dconf.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    # pinentryFlavor = "curses"; # leave pinentryFlavor null for auto-system detection
+  };
+
   # services.dbus.enable = true;
   # services.dbus.packages = with pkgs; [ dconf ];
   services = {

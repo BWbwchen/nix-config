@@ -134,7 +134,17 @@
     '';
   };
 
-  fonts.fonts = with pkgs; [ nerdfonts ];
+  fonts = {
+    fonts = with pkgs; [ nerdfonts ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [ "Meslo Monaco" ];
+        # serif = [ "Monaco" ];
+        # sansSerif = [ "Monaco" ];
+      };
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ 3000 8080 ];

@@ -5,6 +5,7 @@
     ../../modules/polybar # polybar
     ../../modules/i3 # i3
     ../../modules/redshift
+    ../../modules/custom-font
   ];
   home.packages = with pkgs; [
     # For i3

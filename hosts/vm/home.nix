@@ -1,21 +1,44 @@
 { config, pkgs, ... }:
 
-{
+with pkgs;
+let
+  default-python =
+    python3.withPackages (python-packages: with python-packages; [ pip ]);
+in {
   imports = [
     ../../modules/polybar # polybar
     ../../modules/i3 # i3
     ../../modules/redshift
     ../../modules/custom-font
+    ../../modules/firefox
   ];
   home.packages = with pkgs; [
     # For i3
     pulseaudioFull # for pacmd, voice control
     # Command line utilities
     gtk3
+    libsForQt5.gwenview
+    libsForQt5.kde-gtk-config
 
     # Programming languages
+    gcc
+    default-python
+    nodejs
+    nixfmt
+    cargo
+    rustc
+    gnumake
+    gdb
+    cmake
 
     # Developement tools
+
+    # Other
+    google-chrome
+    brave
+    logseq
+    # telegram-desktop # not work in 22.11 only work in 23.05
+    tdesktop
   ];
   gtk = {
     enable = true;

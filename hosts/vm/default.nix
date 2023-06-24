@@ -140,13 +140,19 @@
   };
 
   fonts = {
-    fonts = with pkgs; [ nerdfonts ];
+    # Reference: https://zhuanlan.zhihu.com/p/463403799
+    fonts = with pkgs; [
+      noto-fonts-cjk # for chinese font
+      noto-fonts-emoji
+      nerdfonts
+    ];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = [ "Meslo Monaco" ];
-        # serif = [ "Monaco" ];
-        # sansSerif = [ "Monaco" ];
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [ "Meslo" "Monaco" "Noto Sans Mono CJK SC" ];
+        serif = [ "Noto Sans CJK SC" ];
+        sansSerif = [ "Noto Serif CJK SC" ];
       };
     };
   };

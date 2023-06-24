@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   programs.git = {
@@ -17,7 +17,9 @@
         ignorecase = false;
       };
 
+      commit = { template = "~/.gitmessage.txt"; };
+
     };
   };
+  home.file.".gitmessage.txt".source = ./gitmessage.txt;
 }
-

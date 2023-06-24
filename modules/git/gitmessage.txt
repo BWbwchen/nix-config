@@ -1,0 +1,14 @@
+
+
+# <Type>
+# feat: 新功能
+# fix: Bug修復
+# docs: 文檔改變
+# style: 代碼格式改變
+# refactor: 功能重構
+# perf: 性能優化
+# test: 增加測試代碼
+# build: 改變build工具
+# ci: 與ci相關的設定
+# add: 增加一些跟功能無關的檔案
+# 3rd: 增加第三方

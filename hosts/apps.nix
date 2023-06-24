@@ -7,7 +7,7 @@ let
 in {
   nixpkgs.config.allowUnfree = true;
   imports = [
-    ../modules/git.nix # git
+    ../modules/git # git
     ../modules/zsh.nix
     ../modules/tmux
     ../modules/emacs

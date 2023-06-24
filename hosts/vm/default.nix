@@ -124,7 +124,6 @@
     systemPackages = with pkgs; [
       git
       # docker-compose
-      gnome.adwaita-icon-theme
       gnome.nautilus
     ];
 

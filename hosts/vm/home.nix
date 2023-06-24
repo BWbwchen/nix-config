@@ -20,14 +20,15 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = "whitesur-icon";
+      name = "WhiteSur-dark";
       package = pkgs.whitesur-icon-theme;
     };
     theme = {
-      name = "whitesur-theme";
+      # name = "WhiteSur-Dark";
+      name = "WhiteSur-Dark-solid";
       package = pkgs.whitesur-gtk-theme;
     };
-    font = { name = "Meslo"; };
+    font = { name = "Monaco"; };
     # gtk3 = {
     # bookmarks = [
     #   "file:///home/balsoft/projects Projects"
@@ -38,6 +39,6 @@
     # };
   };
 
-  # home.sessionVariables.GTK_THEME = "whitesur-theme";
+  home.sessionVariables.GTK_THEME = "WhiteSur-Dark-solid";
 }
 

@@ -11,8 +11,8 @@
     DOOM="$HOME/.doom.d"
     if [ ! -d "$EMACS" ]; then
       ${pkgs.git}/bin/git clone --depth 1 https://github.com/doomemacs/doomemacs $EMACS
+      ln -sf $HOME/nix-config/modules/emacs/doom.d $DOOM
     fi
-    ln -sf $HOME/nix-config/modules/emacs/doom.d $DOOM
   '';
   home.packages = with pkgs; [
     # Doom Emacs fonts, manually installed with

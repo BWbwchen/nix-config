@@ -117,6 +117,11 @@ in {
             always = true;
             notification = false;
           }
+          {
+            command = "${pkgs.alttab}/bin/alttab -w 1 -d 1";
+            always = true;
+            notification = false;
+          }
         ];
       };
     };

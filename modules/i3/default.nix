@@ -16,11 +16,16 @@ in {
         window = {
           border = 0;
           hideEdgeBorders = "both";
+          commands = [{
+            command = "border pixel 5";
+            criteria = { class = "^.*"; };
+          }];
         };
 
         gaps = {
           inner = 8;
           outer = 0;
+          smartBorders = "on";
         };
 
         floating = {

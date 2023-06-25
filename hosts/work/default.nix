@@ -178,6 +178,10 @@
   };
 
   # Open ports in the firewall.
+  networking.firewall = {
+    enable = false;
+    # networking.firewall.allowedUDPPorts = [ ... ];
+  };
   # networking.firewall.allowedTCPPorts = [ 3000 8080 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 

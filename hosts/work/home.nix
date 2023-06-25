@@ -44,6 +44,7 @@ in {
     brave
     logseq
     telegram-desktop
+    barrier
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

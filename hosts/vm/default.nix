@@ -38,11 +38,12 @@
       LC_TIME = "zh_TW.UTF-8";
     };
     inputMethod = {
-      enabled = "fcitx";
-      fcitx.engines = with pkgs.fcitx-engines;
-        [
-          chewing # asdf
-        ];
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-chewing # chewing
+        fcitx5-gtk
+        fcitx5-configtool
+      ];
     };
   };
 

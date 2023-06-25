@@ -133,6 +133,11 @@ in {
             always = true;
             notification = false;
           }
+          {
+            command = "fcitx5";
+            always = true;
+            notification = false;
+          }
         ];
       };
     };

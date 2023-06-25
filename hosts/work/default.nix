@@ -10,8 +10,8 @@
     # systemd-boot.enable = true;
     grub = {
       enable = true;
-      device = "/dev/sda";
-      useOSProber = true;
+      device = "nodev";
+      #useOSProber = true;
     };
   };
   networking = {
@@ -64,7 +64,7 @@
       enable = true;
       settings.X11Forwarding = true;
     };
-    qemuGuest.enable = true;
+    #qemuGuest.enable = true;
     dbus = {
       enable = true;
       packages = [ pkgs.dconf ];
@@ -75,7 +75,7 @@
       layout = "us";
       xkbVariant = "";
       xkbOptions = "ctrl:nocaps";
-      # videoDrivers = [ "nvidia" ];
+      videoDrivers = [ "nvidia" ];
       libinput = {
         enable = true;
         mouse = {
@@ -111,7 +111,8 @@
     pulseaudio.enable = true;
     bluetooth.enable = true;
     # ledger.enable = true; # Allow ledger devices to connect.
-    # opengl.driSupport32Bit = true; # Required for steam.
+    # opengl = {};
+    nvidia.nvidiaSettings = true;
   };
 
   # Enable docker in rootless mode.

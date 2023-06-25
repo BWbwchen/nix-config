@@ -39,7 +39,7 @@ in {
             inherit configDir;
             user = "bwbwchen";
           };
-          users.${user} = {
+          users."bwbwchen" = {
             imports = hmImports ++ [ (import ./work/home.nix) ];
           };
         };

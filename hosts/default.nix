@@ -26,5 +26,21 @@ in {
       }
     ];
   };
+  work = lib.nixosSystem {
+    inherit system;
+    specialArgs = { inherit user; };
+    modules = [
+      ./work
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useUserPackages = true;
+          extraSpecialArgs = { inherit user configDir; };
+          users.${user} = {
+            imports = hmImports ++ [ (import ./work/home.nix) ];
+          };
+        };
+      }
+    ];
+  };
 }
-

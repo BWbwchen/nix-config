@@ -61,7 +61,7 @@
     blueman.enable = true;
     openssh = {
       enable = true;
-      forwardX11 = true;
+      settings.X11Forwarding = true;
     };
     qemuGuest.enable = true;
     dbus = {
@@ -119,6 +119,7 @@
   #   setSocketVariable = true;
   # };
   virtualisation.libvirtd.enable = true;
+  programs.zsh.enable = true;
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";

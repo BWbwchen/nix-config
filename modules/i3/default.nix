@@ -22,6 +22,15 @@ in {
           outer = 0;
         };
 
+        floating = {
+          inherit modifier;
+          criteria = [
+            { class = "Telegram"; } # telegram floating
+            { class = "Nautilus"; } # file manager floating
+            { window_role = "pop-up"; }
+          ];
+        };
+
         keybindings = {
           # Misc 
           "${modifier}+q" = "kill";

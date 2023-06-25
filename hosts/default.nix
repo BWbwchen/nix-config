@@ -28,14 +28,17 @@ in {
   };
   work = lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit user; };
+    specialArgs = { user = "bwbwchen"; };
     modules = [
       ./work
       home-manager.nixosModules.home-manager
       {
         home-manager = {
           useUserPackages = true;
-          extraSpecialArgs = { inherit user configDir; };
+          extraSpecialArgs = {
+            inherit configDir;
+            user = "bwbwchen";
+          };
           users.${user} = {
             imports = hmImports ++ [ (import ./work/home.nix) ];
           };

@@ -15,7 +15,7 @@
     };
   };
   networking = {
-    hostName = "${user}_workstation";
+    hostName = "bw_workstation";
     networkmanager.enable = true;
     resolvconf.enable = false; # prevent default nameservers
     nameservers = [ "1.1.1.1" "1.0.0.1" ];

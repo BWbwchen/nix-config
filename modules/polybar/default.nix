@@ -40,8 +40,7 @@ in {
 
       modules-left = "i3";
       modules-center = "date";
-      modules-right = "cpu memory powermenu";
-      # modules-right = "cpu memory pavolume powermenu";
+      modules-right = "cpu memory pavolume powermenu";
     in {
       "bar/top" = fonts // {
         enable-ipc = true;
@@ -210,11 +209,10 @@ in {
         type = "custom/script";
         tail = true;
         label = "%output%";
-        exec = "${pkgs.bash}/bin/bash ${./scripts/pavolume.sh} --listen";
-        click-right = "exec ${pkgs.pavucontrol}/bin/pavucontrol";
-        click-left = "${pkgs.bash}/bin/bash ${./scripts/pavolume.sh} --togmute";
-        scroll-up = "${pkgs.bash}/bin/bash ${./scripts/pavolume.sh} --up";
-        scroll-down = "${pkgs.bash}/bin/bash ${./scripts/pavolume.sh} --down";
+        exec = "${pkgs.pamixer}/bin/pamixer --get-volume-human";
+        click-left = "${pkgs.pamixer}/bin/pamixer --toggle-mute";
+        scroll-up = "${pkgs.pamixer}/bin/pamixer --increase 2";
+        scroll-down = "${pkgs.pamixer}/bin/pamixer --decrease 2";
         format-underline = "#0a6cf5";
         format-foreground = foreground;
       };

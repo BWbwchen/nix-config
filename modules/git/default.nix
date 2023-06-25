@@ -26,5 +26,9 @@
 
     };
   };
+  home.packages = with pkgs;
+    [
+      git-crypt # crypt secret file
+    ];
   home.file.".gitmessage.txt".source = ./gitmessage.txt;
 }

@@ -7,6 +7,7 @@
     ../modules/zsh.nix
     ../modules/tmux
     ../modules/emacs
+    ../modules/wakatime
   ];
   home.packages = with pkgs; [
     # GUI utilities
@@ -28,7 +29,6 @@
     tree
     gnupg
     feh
-    wakatime
 
     # Programming languages
 

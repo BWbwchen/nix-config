@@ -1,4 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, outputOption, # xrandr render option
+... }:
 
 let modifier = "Mod1";
 in {
@@ -119,6 +120,11 @@ in {
           }
           {
             command = "${pkgs.alttab}/bin/alttab -w 1 -d 1";
+            always = true;
+            notification = false;
+          }
+          {
+            command = "${pkgs.xorg.xrandr}/bin/xrandr ${outputOption}";
             always = true;
             notification = false;
           }

@@ -7,7 +7,10 @@ let
 in {
   imports = [
     ../../modules/polybar # polybar
-    ../../modules/i3 # i3
+    (import ../../modules/i3 ({
+      inherit config lib pkgs;
+      outputOption = "--output Virtual-1 --mode 1280x800";
+    })) # i3
     ../../modules/redshift
     ../../modules/custom-font
     ../../modules/firefox

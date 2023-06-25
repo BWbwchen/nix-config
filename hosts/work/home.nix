@@ -45,6 +45,11 @@ in {
     logseq
     telegram-desktop
   ];
+  home.pointerCursor = {
+    name = "capitaine-cursors";
+    package = pkgs.capitaine-cursors;
+    size = 40;
+  };
   gtk = {
     enable = true;
     iconTheme = {
@@ -59,6 +64,7 @@ in {
     cursorTheme = {
       name = "capitaine-cursors";
       package = pkgs.capitaine-cursors;
+      size = 40;
     };
     font = { name = "Monaco"; };
     # gtk3 = {

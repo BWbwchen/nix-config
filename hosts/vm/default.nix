@@ -37,6 +37,13 @@
       LC_TELELPHONE = "zh_TW.UTF-8";
       LC_TIME = "zh_TW.UTF-8";
     };
+    inputMethod = {
+      enabled = "fcitx";
+      fcitx.engines = with pkgs.fcitx-engines;
+        [
+          chewing # asdf
+        ];
+    };
   };
 
   programs.dconf.enable = true;

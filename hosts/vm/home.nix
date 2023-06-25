@@ -51,6 +51,10 @@ in {
       name = "WhiteSur-Dark-solid";
       package = pkgs.whitesur-gtk-theme;
     };
+    cursorTheme = {
+      name = "capitaine-cursors";
+      package = pkgs.capitaine-cursors;
+    };
     font = { name = "Monaco"; };
     # gtk3 = {
     # bookmarks = [

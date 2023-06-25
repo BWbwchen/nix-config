@@ -140,6 +140,27 @@ in {
           }
         ];
       };
+      extraConfig = ''
+        set $ws1 1
+        set $ws2 2
+        set $ws3 3
+        set $ws4 4
+        set $ws5 5
+        set $ws6 6
+        set $ws7 7
+        set $ws8 8
+        set $ws9 9
+
+        workspace $ws1 output HDMI-1-3
+        workspace $ws2 output HDMI-1-3
+        workspace $ws3 output HDMI-1-3
+        workspace $ws4 output HDMI-1-3
+        workspace $ws5 output HDMI-1-3
+        workspace $ws6 output VGA-1
+        workspace $ws7 output VGA-1
+        workspace $ws8 output VGA-1
+        workspace $ws9 output VGA-1
+      '';
     };
   };
 }

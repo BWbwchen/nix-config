@@ -1,13 +1,14 @@
 { config, lib, pkgs, ... }:
 
 let
-  type = "vm";
-  # type = "workstation";
+  # type = "vm";
+  type = "workstation";
   vm_monitor = "\${env:MONITOR}";
   workstation_monitor = "\${env:MONITOR}";
   monitor = if type == "vm" then vm_monitor else workstation_monitor;
   vm_script = "polybar top &";
-  workstation_script = "polybar top &";
+  workstation_script =
+    "MONITOR=VGA-1 polybar top & MONITOR=HDMI-1-3 polybar top &";
 in {
   services.polybar = {
     package = pkgs.polybar.override {

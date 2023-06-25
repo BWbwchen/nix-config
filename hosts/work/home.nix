@@ -43,8 +43,7 @@ in {
     google-chrome
     brave
     logseq
-    # telegram-desktop # not work in 22.11 only work in 23.05
-    tdesktop
+    telegram-desktop
   ];
   gtk = {
     enable = true;

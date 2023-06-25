@@ -10,7 +10,7 @@ in {
     (import ../../modules/i3 ({
       inherit config lib pkgs;
       outputOption =
-        "--output VGA-1 --mode 1920x1080 --pos 1920x0 --output HDMI-1-3 --primary --mode 1920x1080 --pos 0x0";
+        "--output VGA-1 --mode 1920x1080 --pos 1920x0 --output HDMI-1-0 --primary --mode 1920x1080 --pos 0x0";
     })) # i3
     ../../modules/redshift
     ../../modules/custom-font

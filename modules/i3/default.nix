@@ -151,11 +151,11 @@ in {
         set $ws8 8
         set $ws9 9
 
-        workspace $ws1 output HDMI-1-3
-        workspace $ws2 output HDMI-1-3
-        workspace $ws3 output HDMI-1-3
-        workspace $ws4 output HDMI-1-3
-        workspace $ws5 output HDMI-1-3
+        workspace $ws1 output HDMI-1-0
+        workspace $ws2 output HDMI-1-0
+        workspace $ws3 output HDMI-1-0
+        workspace $ws4 output HDMI-1-0
+        workspace $ws5 output HDMI-1-0
         workspace $ws6 output VGA-1
         workspace $ws7 output VGA-1
         workspace $ws8 output VGA-1

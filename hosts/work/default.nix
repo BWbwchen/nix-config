@@ -75,7 +75,7 @@
       layout = "us";
       xkbVariant = "";
       xkbOptions = "ctrl:nocaps";
-      videoDrivers = [ "nvidia" ];
+      videoDrivers = [ "nvidia" "modesetting" ];
       libinput = {
         enable = true;
         mouse = {

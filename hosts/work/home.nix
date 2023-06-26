@@ -15,6 +15,7 @@ in {
     ../../modules/redshift
     ../../modules/custom-font
     ../../modules/firefox
+    ../../modules/alacritty
   ];
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "nvidia-x11" ];

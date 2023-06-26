@@ -38,7 +38,7 @@ in {
         font-4 = "FontAwesome:size=11;0";
       };
 
-      modules-left = "i3";
+      modules-left = "i3 xwindow";
       modules-center = "date";
       modules-right = "cpu memory pavolume powermenu";
     in {

@@ -1,4 +1,4 @@
 # Monaco font
 
-This font is from this [github repository](https://github.com/probil/Monaco-IDE-font)
+This font is from this [website](https://www.cufonfonts.com/font/monaco)
 

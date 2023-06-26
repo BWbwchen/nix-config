@@ -133,8 +133,14 @@
   # };
   virtualisation.libvirtd.enable = true;
   programs.zsh.enable = true;
+  users.groups.${user} = {
+    name = "${user}";
+    members = [ "${user}" ];
+    gid = 1000;
+  };
   users.users.${user} = {
     isNormalUser = true;
+    group = "${user}";
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
     packages = with pkgs; [ ];

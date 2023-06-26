@@ -72,14 +72,13 @@ in {
       name = "Monaco";
       size = 16;
     };
-    # gtk3 = {
-    # bookmarks = [
-    #   "file:///home/balsoft/projects Projects"
-    #   "davs://nextcloud.balsoft.ru/remote.php/dav/files/balsoft nextcloud.balsoft.ru"
-    #   "sftp://balsoft.ru/home/balsoft balsoft.ru"
-    # ] ++ map (machine: "sftp://${machine}/home/balsoft ${machine}")
-    #   (builtins.attrNames inputs.self.nixosConfigurations);
-    # };
+    gtk3 = {
+      bookmarks = [
+        "file:///home/bwbwchen/nix-config nix-config"
+        "file:///home/bwbwchen/logseq logseq"
+        "file:///home/bwbwchen/knowledge knowledge"
+      ];
+    };
   };
 
   home.sessionVariables.GTK_THEME = "WhiteSur-Dark-solid";

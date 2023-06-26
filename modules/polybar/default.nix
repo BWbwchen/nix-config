@@ -70,12 +70,12 @@ in {
         modules-center = modules-center;
         modules-right = modules-right;
 
-        # wm-restack = "i3";
+        wm-restack = "i3";
 
         tray-position = "right";
         tray-scale = 1;
         tray-background = background;
-        tray-maxsize = 6;
+        tray-maxsize = 24;
 
         tray-offset-y = 0;
         tray-padding = 10;

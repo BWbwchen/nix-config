@@ -98,9 +98,11 @@ in {
           "${modifier}+Shift+9" = "move container to workspace 9";
 
           # Audio Volume
-          # bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/polybar/scripts/pavolume.sh --up
-          # bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/polybar/scripts/pavolume.sh --down
-          # bindsym XF86AudioMute exec --no-startup-id ~/.config/polybar/scripts/pavolume.sh --togmute
+          "XF86AudioRaiseVolume" =
+            "exec ${pkgs.pamixer}/bin/pamixer --increase 2";
+          "XF86AudioLowerVolume" =
+            "exec ${pkgs.pamixer}/bin/pamixer --decrease 2";
+          "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
         };
 
         modes.resize = {

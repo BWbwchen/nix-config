@@ -50,6 +50,7 @@ in {
     logseq
     telegram-desktop
     barrier
+    zotero
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

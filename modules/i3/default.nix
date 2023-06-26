@@ -47,6 +47,7 @@ in {
           criteria = [
             { class = "Telegram"; } # telegram floating
             { class = "Nautilus"; } # file manager floating
+            { class = "spectacle"; } # screenshot floating
             { window_role = "pop-up"; }
           ];
         };

@@ -41,7 +41,7 @@ font:
     style: Regular
 
   # Point size
-  size: 18.0
+  size: 14.0
 
 key_bindings:
 - { key: N, mods: Command, action: SpawnNewInstance }

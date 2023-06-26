@@ -154,6 +154,11 @@ in {
             always = true;
             notification = false;
           }
+          {
+            command = "barrier";
+            always = true;
+            notification = false;
+          }
         ];
       };
       extraConfig = ''

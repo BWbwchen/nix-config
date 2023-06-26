@@ -207,7 +207,7 @@ in {
       };
       "module/pavolume" = {
         type = "custom/script";
-        tail = true;
+        interval = 1;
         label = "%output%";
         exec = "${pkgs.pamixer}/bin/pamixer --get-volume-human";
         click-left = "${pkgs.pamixer}/bin/pamixer --toggle-mute";
@@ -219,4 +219,5 @@ in {
     };
     script = if type == "vm" then vm_script else workstation_script;
   };
+  home.packages = with pkgs; [ pamixer ];
 }

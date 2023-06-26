@@ -81,6 +81,7 @@ in {
         "file:///home/bwbwchen/nix-config nix-config"
         "file:///home/bwbwchen/logseq logseq"
         "file:///home/bwbwchen/knowledge knowledge"
+        "file:///home/bwbwchen/work work"
       ];
     };
   };

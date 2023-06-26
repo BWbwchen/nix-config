@@ -27,6 +27,10 @@ in {
     libsForQt5.gwenview
     libsForQt5.kde-gtk-config
 
+    # GPU
+    pciutils
+    nvtop
+
     # Programming languages
     gcc
     default-python

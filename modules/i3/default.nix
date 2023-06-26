@@ -27,7 +27,11 @@ in {
             }
             {
               command = "move to workspace $ws1";
-              criteria = { class = "Firefox"; };
+              criteria = { class = "firefox"; };
+            }
+            {
+              command = "move to workspace $ws2";
+              criteria = { class = "Emacs"; };
             }
           ];
         };

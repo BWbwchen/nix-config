@@ -67,7 +67,10 @@ in {
       package = pkgs.capitaine-cursors;
       size = 40;
     };
-    font = { name = "Monaco"; };
+    font = {
+      name = "Monaco";
+      size = 16;
+    };
     # gtk3 = {
     # bookmarks = [
     #   "file:///home/balsoft/projects Projects"

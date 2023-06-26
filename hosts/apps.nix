@@ -30,6 +30,7 @@
     gnupg
     feh
     duf
+    tig
 
     # Programming languages
 

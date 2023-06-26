@@ -15,7 +15,10 @@
         plugins = [ "git" "fzf" ];
       };
 
-      shellAliases = { vim = "lvim"; };
+      shellAliases = {
+        vim = "lvim";
+        df = "duf";
+      };
     };
 
     fzf = { enable = true; };

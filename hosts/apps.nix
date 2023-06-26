@@ -29,6 +29,7 @@
     tree
     gnupg
     feh
+    duf
 
     # Programming languages
 

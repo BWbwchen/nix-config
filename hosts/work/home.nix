@@ -32,7 +32,7 @@ in {
     nvtop
 
     # Programming languages
-    gcc
+    gcc11
     default-python
     nodejs
     nixfmt

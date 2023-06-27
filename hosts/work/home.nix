@@ -86,6 +86,17 @@ in {
       ];
     };
   };
+  xdg.userDirs = {
+    enable = true;
+    desktop = "${config.home.homeDirectory}/Desktop";
+    download = "${config.home.homeDirectory}/Downloads";
+    documents = null;
+    music = null;
+    pictures = null;
+    publicShare = null;
+    templates = null;
+    videos = null;
+  };
 
   home.sessionVariables.GTK_THEME = "WhiteSur-Dark-solid";
 }

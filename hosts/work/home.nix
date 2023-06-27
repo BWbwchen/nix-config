@@ -42,6 +42,11 @@ in {
     gdb
     cmake
 
+    # Clang and Clang tool
+    # llvmPackages_15.stdenv # clang
+    # llvmPackages_15.openmp # clang
+    clang-tools_15 # for clangd
+
     # Developement tools
 
     # Other

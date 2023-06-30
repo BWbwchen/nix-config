@@ -5,6 +5,10 @@ let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
+    config.permittedInsecurePackages = [ "electron-20.3.11" ];
+    overlays = [
+      (import ../overlays/logseq) # logseq
+    ];
   };
   lib = nixpkgs.lib;
   hmImports = [ (import ./home.nix) ];
@@ -18,7 +22,7 @@ in {
       {
         home-manager = {
           useUserPackages = true;
-          extraSpecialArgs = { inherit user configDir; };
+          extraSpecialArgs = { inherit user configDir pkgs; };
           users.${user} = {
             imports = hmImports ++ [ (import ./vm/home.nix) ];
           };
@@ -36,7 +40,7 @@ in {
         home-manager = {
           useUserPackages = true;
           extraSpecialArgs = {
-            inherit configDir;
+            inherit configDir pkgs;
             user = "bwbwchen";
           };
           users."bwbwchen" = {

@@ -48,6 +48,7 @@ in {
     clang-tools_15 # for clangd
 
     # Developement tools
+    gitkraken
 
     # Other
     google-chrome
@@ -56,6 +57,7 @@ in {
     telegram-desktop
     barrier
     zotero
+    libreoffice
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

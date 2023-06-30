@@ -6,9 +6,9 @@ let
   vm_monitor = "\${env:MONITOR}";
   workstation_monitor = "\${env:MONITOR}";
   monitor = if type == "vm" then vm_monitor else workstation_monitor;
-  vm_script = "polybar top &";
+  vm_script = "polybar master &";
   workstation_script =
-    "MONITOR=VGA-1 polybar top & MONITOR=HDMI-1-0 polybar top &";
+    "MONITOR=VGA-1 polybar second & MONITOR=HDMI-1-0 polybar master &";
 in {
   services.polybar = {
     package = pkgs.polybar.override {
@@ -38,11 +38,16 @@ in {
         font-4 = "FontAwesome:size=11;0";
       };
 
-      modules-left = "i3 xwindow";
-      modules-center = "date";
-      modules-right = "cpu memory pavolume powermenu";
-    in {
-      "bar/top" = fonts // {
+      tray_setting = {
+        tray-position = "right";
+        tray-scale = 1;
+        tray-background = background;
+        tray-maxsize = 24;
+
+        tray-offset-y = 0;
+        tray-padding = 10;
+      };
+      normal_bar = {
         enable-ipc = true;
         bottom = false;
         monitor = monitor;
@@ -65,26 +70,25 @@ in {
         border-color = "#f7f3f2";
 
         separator = "|";
-
-        modules-left = modules-left;
-        modules-center = modules-center;
-        modules-right = modules-right;
-
-        wm-restack = "i3";
-
-        tray-position = "right";
-        tray-scale = 1;
-        tray-background = background;
-        tray-maxsize = 24;
-
-        tray-offset-y = 0;
-        tray-padding = 10;
-
         overline-size = 10;
         overline-color = background;
         underline-size = 2;
         underline-color = background;
       };
+      i3_showing = {
+        modules-left = modules-left;
+        modules-center = modules-center;
+        modules-right = modules-right;
+
+        wm-restack = "i3";
+      };
+
+      modules-left = "i3 xwindow";
+      modules-center = "date";
+      modules-right = "cpu memory pavolume powermenu";
+    in {
+      "bar/master" = fonts // normal_bar // tray_setting // i3_showing;
+      "bar/second" = fonts // normal_bar // i3_showing;
       "module/xwindow" = {
         type = "internal/xwindow";
         label = "%title:0:40:...%";

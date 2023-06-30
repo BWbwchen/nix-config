@@ -161,8 +161,10 @@
       ];
 
     # Disable gui prompt when git asks for a password.
+    # Disable DPMS and prevent screen from blanking, [reference](https://wiki.archlinux.org/title/Display_Power_Management_Signaling)
     extraInit = ''
       unset -v SSH_ASKPASS
+      xset s off -dpms
     '';
   };
 

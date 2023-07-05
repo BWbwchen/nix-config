@@ -26,6 +26,7 @@ in {
     gtk3
     libsForQt5.gwenview
     libsForQt5.kde-gtk-config
+    lm_sensors
 
     # GPU
     pciutils

@@ -59,6 +59,7 @@ in {
     barrier
     zotero
     libreoffice
+    bitwarden
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

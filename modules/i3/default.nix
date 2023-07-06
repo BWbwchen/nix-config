@@ -48,6 +48,7 @@ in {
             { class = "Telegram"; } # telegram floating
             { class = "Nautilus"; } # file manager floating
             { class = "spectacle"; } # screenshot floating
+            { class = "Bitwarden"; } # bitwarden floating
             { window_role = "pop-up"; }
           ];
         };

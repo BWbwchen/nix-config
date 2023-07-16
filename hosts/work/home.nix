@@ -60,6 +60,7 @@ in {
     zotero
     libreoffice
     bitwarden
+    evince # pdf viewer
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

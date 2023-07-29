@@ -83,16 +83,16 @@ in {
         wm-restack = "i3";
       };
 
-      modules-left = "i3 xwindow";
+      modules-left = "i3 ";
       modules-center = "date";
       modules-right = "cpu memory pavolume powermenu";
     in {
       "bar/master" = fonts // normal_bar // tray_setting // i3_showing;
       "bar/second" = fonts // normal_bar // i3_showing;
-      "module/xwindow" = {
-        type = "internal/xwindow";
-        label = "%title:0:40:...%";
-      };
+      # "module/xwindow" = {
+      #   type = "internal/xwindow";
+      #   label = "%title:0:40:...%";
+      # };
       "module/cpu" = {
         type = "internal/cpu";
         interval = 2;

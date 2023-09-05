@@ -63,8 +63,25 @@
     blueman.enable = true;
     openssh = {
       enable = true;
-      settings.X11Forwarding = true;
+      settings = {
+        X11Forwarding = true;
+        LogLevel = "VERBOSE";
+      };
     };
+
+    fail2ban = {
+      enable = true;
+      maxretry = 8; # Observe 5 violations before banning an IP
+      bantime = "24h"; # Set bantime to one day
+      bantime-increment = {
+        enable = true; # Enable increment of bantime after each violation
+        formula =
+          "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
+        maxtime = "168h"; # Do not ban for more than 1 week
+        overalljails = true; # Calculate the bantime based on all the violations
+      };
+    };
+
     #qemuGuest.enable = true;
     dbus = {
       enable = true;
@@ -188,11 +205,11 @@
 
   # Open ports in the firewall.
   networking.firewall = {
-    enable = false;
-    # networking.firewall.allowedUDPPorts = [ ... ];
+    enable = true;
+    allowedTCPPorts = [
+      24800 # barrier
+    ];
   };
-  # networking.firewall.allowedTCPPorts = [ 3000 8080 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
 
   nix = {
     # package = pkgs.nixFlakes;

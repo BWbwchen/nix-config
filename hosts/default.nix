@@ -5,7 +5,7 @@ let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
-    config.permittedInsecurePackages = [ "electron-20.3.11" ];
+    config.permittedInsecurePackages = [ "electron-20.3.12" ];
     overlays = [
       (import ../overlays/logseq) # logseq
     ];

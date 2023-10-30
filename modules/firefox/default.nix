@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, unstable, ... }:
 
 {
   programs.firefox = {
+    package = unstable.firefox;
     enable = true;
     profiles = {
       default = {

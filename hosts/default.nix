@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, configDir, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, user, configDir, ... }:
 
 let
   system = "x86_64-linux";
@@ -9,6 +9,10 @@ let
     overlays = [
       (import ../overlays/logseq) # logseq
     ];
+  };
+  unstable = import nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
   };
   lib = nixpkgs.lib;
   hmImports = [ (import ./home.nix) ];
@@ -22,7 +26,7 @@ in {
       {
         home-manager = {
           useUserPackages = true;
-          extraSpecialArgs = { inherit user configDir pkgs; };
+          extraSpecialArgs = { inherit user configDir pkgs unstable; };
           users.${user} = {
             imports = hmImports ++ [ (import ./vm/home.nix) ];
           };
@@ -40,7 +44,7 @@ in {
         home-manager = {
           useUserPackages = true;
           extraSpecialArgs = {
-            inherit configDir pkgs;
+            inherit configDir pkgs unstable;
             user = "bwbwchen";
           };
           users."bwbwchen" = {

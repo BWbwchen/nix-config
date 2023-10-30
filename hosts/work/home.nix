@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 
 with pkgs;
 let

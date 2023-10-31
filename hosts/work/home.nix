@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, unstable, gitkraken_9_3_0, ... }:
 
 with pkgs;
 let
@@ -49,7 +49,7 @@ in {
     clang-tools_15 # for clangd
 
     # Developement tools
-    gitkraken
+    gitkraken_9_3_0.gitkraken
 
     # Other
     google-chrome

@@ -1,4 +1,5 @@
-{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, user, configDir, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, user, configDir
+, gitkraken_allfree, ... }:
 
 let
   system = "x86_64-linux";
@@ -11,6 +12,10 @@ let
     ];
   };
   unstable = import nixpkgs-unstable {
+    inherit system;
+    config.allowUnfree = true;
+  };
+  gitkraken_9_3_0 = import gitkraken_allfree {
     inherit system;
     config.allowUnfree = true;
   };
@@ -44,7 +49,7 @@ in {
         home-manager = {
           useUserPackages = true;
           extraSpecialArgs = {
-            inherit configDir pkgs unstable;
+            inherit configDir pkgs unstable gitkraken_9_3_0;
             user = "bwbwchen";
           };
           users."bwbwchen" = {

@@ -52,10 +52,11 @@ in {
     gitkraken_9_3_0.gitkraken
 
     # Other
-    google-chrome
-    brave
+    unstable.google-chrome
+    unstable.brave
     logseq
-    telegram-desktop
+    unstable.telegram-desktop
+    unstable.zulip
     barrier
     zotero
     libreoffice

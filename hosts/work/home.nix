@@ -35,10 +35,7 @@ in {
     # Programming languages
     gcc11
     default-python
-    nodejs
     nixfmt
-    cargo
-    rustc
     gnumake
     gdb
     cmake
@@ -52,16 +49,19 @@ in {
     gitkraken_9_3_0.gitkraken
 
     # Other
-    unstable.google-chrome
     unstable.brave
     logseq
     unstable.telegram-desktop
     unstable.zulip
+    unstable.slack
     barrier
     zotero
     libreoffice
-    bitwarden
     evince # pdf viewer
+
+    # man page
+    pkgs.man-pages
+    pkgs.man-pages-posix
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

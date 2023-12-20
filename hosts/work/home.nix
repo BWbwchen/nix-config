@@ -50,7 +50,8 @@ in {
 
     # Other
     unstable.brave
-    logseq
+    unstable.logseq
+    unstable.obsidian
     unstable.telegram-desktop
     unstable.zulip
     unstable.slack

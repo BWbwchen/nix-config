@@ -6,14 +6,14 @@ let
   pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
-    config.permittedInsecurePackages = [ "electron-20.3.12" ];
-    overlays = [
-      (import ../overlays/logseq) # logseq
-    ];
   };
   unstable = import nixpkgs-unstable {
     inherit system;
+    config.permittedInsecurePackages = [ "electron-25.9.0" ];
     config.allowUnfree = true;
+    overlays = [
+      (import ../overlays/logseq) # logseq
+    ];
   };
   gitkraken_9_3_0 = import gitkraken_allfree {
     inherit system;

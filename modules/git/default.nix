@@ -20,6 +20,7 @@
       core = {
         editor = "nvim";
         ignorecase = false;
+        quotepath = false;
       };
 
       commit = { template = "~/.gitmessage.txt"; };

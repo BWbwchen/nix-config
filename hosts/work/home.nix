@@ -55,6 +55,7 @@ in {
     unstable.telegram-desktop
     unstable.zulip
     unstable.slack
+    unstable.fluent-reader # rss reader
     barrier
     zotero
     libreoffice

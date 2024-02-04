@@ -8,6 +8,10 @@
       default = {
         isDefault = true;
         settings = {
+          "browser.cache.disk.enable" = false;
+          "browser.cache.memory.enable" = true;
+          "browser.cache.memory.capacity" = -1;
+          "browser.sessionstore.resume_from_crash" = false;
           "browser.display.background_color" = "#FFFFFF";
           "browser.display.background_color.dark" = "#1C1B22";
           "browser.display.foreground_color" = "#000000";

@@ -8,5 +8,4 @@
     enableSSHSupport = true;
     # pinentryFlavor = "curses"; # leave pinentryFlavor null for auto-system detection
   };
-
 }

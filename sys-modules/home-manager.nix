@@ -29,9 +29,6 @@
   };
 
   home.packages = with pkgs; [
-    # GUI utilities
-    arandr # visual front end for xrandr
-
     # Command line utilities
     neovim
     wget
@@ -40,26 +37,9 @@
     htop
     neofetch
 
-    # archives
-    zip
-    unzip
-    unrar
-    xz
-    p7zip
-
-    # utils
-    ripgrep
-    appimage-run
-    any-nix-shell # zsh support for nix-shell
-
     # misc
-    file
-    tree
-    gnutar
     gnupg
-    feh
     duf
-    tig
 
     # Programming languages
 

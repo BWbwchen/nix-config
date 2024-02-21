@@ -27,6 +27,28 @@ in {
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "nvidia-x11" ];
   home.packages = with pkgs; [
+    # GUI utilities
+    arandr # visual front end for xrandr
+
+    # archives
+    zip
+    unzip
+    unrar
+    xz
+    p7zip
+
+    # utils
+    ripgrep
+    appimage-run
+    any-nix-shell # zsh support for nix-shell
+
+    # misc
+    file
+    tree
+    gnutar
+    feh
+    tig
+
     # For i3
     pulseaudioFull # for pacmd, voice control
     # Command line utilities

@@ -44,7 +44,7 @@
 
   fonts = {
     # Reference: https://zhuanlan.zhihu.com/p/463403799
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts-cjk # for chinese font
       noto-fonts-emoji
       nerdfonts

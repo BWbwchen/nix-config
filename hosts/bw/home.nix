@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, gitkraken_9_3_0, ... }:
+{ config, lib, pkgs, pkgs-unstable, pkgs-gitkraken, user, ... }:
 
 with pkgs;
 let
@@ -6,6 +6,10 @@ let
     python3.withPackages (python-packages: with python-packages; [ pip ]);
 in {
   imports = [
+    (import ../../sys-modules/home-manager.nix {
+      inherit config lib pkgs user;
+      state_version = "22.11";
+    })
     ../../modules/polybar # polybar
     (import ../../modules/i3 ({
       inherit config lib pkgs;
@@ -16,7 +20,10 @@ in {
     ../../modules/custom-font
     ../../modules/firefox
     ../../modules/alacritty
+    ../../modules/emacs
+    ../../modules/wakatime
   ];
+
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "nvidia-x11" ];
   home.packages = with pkgs; [
@@ -46,24 +53,26 @@ in {
     clang-tools_15 # for clangd
 
     # Developement tools
-    gitkraken_9_3_0.gitkraken
+    pkgs-gitkraken.gitkraken
 
     # Other
-    unstable.brave
-    unstable.logseq
-    unstable.obsidian
-    unstable.telegram-desktop
-    unstable.zulip
-    unstable.slack
-    unstable.fluent-reader # rss reader
+    pkgs-unstable.brave
+    pkgs-unstable.logseq
+    pkgs-unstable.obsidian
+    pkgs-unstable.telegram-desktop
+    pkgs-unstable.zulip
+    pkgs-unstable.slack
+    pkgs-unstable.fluent-reader # rss reader
     barrier
     zotero
     libreoffice
     evince # pdf viewer
 
     # man page
-    pkgs.man-pages
-    pkgs.man-pages-posix
+    man-pages
+    man-pages-posix
+    linux-manual
+    stdmanpages
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";
@@ -113,4 +122,3 @@ in {
 
   home.sessionVariables.GTK_THEME = "WhiteSur-Dark-solid";
 }
-

@@ -1,5 +1,5 @@
 {
-  description = "Tim's Nix Configuration";
+  description = "Tim's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
@@ -8,20 +8,57 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    gitkraken_allfree.url =
+    # gitkraken with all free feature.
+    gitkraken-allfree.url =
       "github:nixos/nixpkgs/da5adce0ffaff10f6d0fee72a02a5ed9d01b52fc";
   };
 
   outputs =
-    inputs@{ self, nixpkgs, nixpkgs-unstable, gitkraken_allfree, home-manager }:
+    inputs@{ self, nixpkgs, nixpkgs-unstable, gitkraken-allfree, home-manager }:
     let
-      user = "bw";
-      configDir = "nix-config";
+      user = "bwbwchen";
+      system = "x86_64-linux";
+      pkgs-config = {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-unstable-config = {
+        inherit system;
+        config.allowUnfree = true;
+        config.permittedInsecurePackages = [ "electron-25.9.0" ];
+        overlays = [
+          (import ./overlays/logseq) # logseq
+        ];
+      };
+      pkgs = import nixpkgs pkgs-config;
+      lib = nixpkgs.lib;
+      pkgs-unstable = import nixpkgs-unstable pkgs-unstable-config;
+      pkgs-gitkraken = import gitkraken-allfree pkgs-config;
     in {
-      nixosConfigurations = import ./hosts {
-        inherit (nixpkgs) lib;
-        inherit inputs nixpkgs nixpkgs-unstable home-manager user configDir
-          gitkraken_allfree;
+      nixosConfigurations = {
+        bw = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit user pkgs lib;
+            inherit pkgs-unstable pkgs-gitkraken;
+          };
+          modules = [
+            ./hosts/bw/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${user} = import ./hosts/bw/home.nix;
+                extraSpecialArgs = {
+                  inherit user pkgs;
+                  inherit pkgs-unstable pkgs-gitkraken;
+                };
+              };
+            }
+          ];
+        };
       };
     };
 }

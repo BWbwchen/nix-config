@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "gitkraken_allfree": {
+    "gitkraken-allfree": {
       "locked": {
         "lastModified": 1693771906,
         "narHash": "sha256-32EnPCaVjOiEERZ+o/2Ir7JH9pkfwJZJ27SKHNvt4yk=",
@@ -71,7 +71,7 @@
     },
     "root": {
       "inputs": {
-        "gitkraken_allfree": "gitkraken_allfree",
+        "gitkraken-allfree": "gitkraken-allfree",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"

@@ -41,6 +41,7 @@ in {
     ripgrep
     appimage-run
     any-nix-shell # zsh support for nix-shell
+    openvpn
 
     # misc
     file

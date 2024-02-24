@@ -25,9 +25,8 @@
       pkgs-unstable-config = {
         inherit system;
         config.allowUnfree = true;
-        config.permittedInsecurePackages = [ "electron-25.9.0" ];
-        overlays = [
-          (import ./overlays/logseq) # logseq
+        config.permittedInsecurePackages = [
+          "electron-25.9.0" # for obsidian 1.5.3
         ];
       };
       pkgs = import nixpkgs pkgs-config;

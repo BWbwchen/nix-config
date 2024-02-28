@@ -22,6 +22,7 @@ in {
     ../../modules/alacritty
     ../../modules/emacs
     ../../modules/wakatime
+    ../../modules/vscode
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

@@ -42,6 +42,7 @@ in {
     appimage-run
     any-nix-shell # zsh support for nix-shell
     openvpn
+    vlc
 
     # misc
     file

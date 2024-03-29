@@ -16,7 +16,7 @@
       "workbench.colorTheme" = "Monokai";
       "workbench.startupEditor" = "none";
 
-      "editor.fontSize" = 16;
+      "editor.fontSize" = 17;
       "editor.formatOnSave" = true;
       "editor.fontFamily" = "Monaco, 'Droid Sans Mono', 'monospace', monospace";
 
@@ -36,6 +36,10 @@
           after = [ "<Esc>" ];
         }
       ];
+      "vim.normalModeKeyBindings" = [{
+        before = [ "<leader>" "f" "s" ];
+        commands = [ "workbench.action.files.save" ];
+      }];
     };
   };
   home.packages = with pkgs; [ nixfmt ];

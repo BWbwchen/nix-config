@@ -26,6 +26,7 @@
 
       # Vim settings
       "vim.leader" = "<space>";
+      "vim.useSystemClipboard" = true;
       "vim.insertModeKeyBindings" = [
         {
           before = [ "j" "k" ];

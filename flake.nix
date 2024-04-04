@@ -58,6 +58,32 @@
             }
           ];
         };
+
+        # LXC container
+        lxc = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            user = "bw";
+            inherit pkgs lib;
+            inherit pkgs-unstable;
+          };
+          modules = [
+            ./hosts/lxc/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users."bw" = import ./hosts/lxc/home.nix;
+                extraSpecialArgs = {
+                  user = "bw";
+                  inherit pkgs pkgs-unstable;
+                };
+              };
+            }
+          ];
+        };
       };
     };
 }

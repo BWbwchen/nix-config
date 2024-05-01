@@ -1,0 +1,43 @@
+{
+  "editor.fontFamily": "Monaco, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontSize": 17,
+  "editor.formatOnSave": true,
+  "explorer.confirmDelete": false,
+  "update.showReleaseNotes": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "k"
+      ]
+    },
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "k",
+        "j"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<leader>",
+        "f",
+        "s"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
+    }
+  ],
+  "vim.useSystemClipboard": true,
+  "workbench.colorTheme": "Monokai",
+  "workbench.startupEditor": "none"
+}

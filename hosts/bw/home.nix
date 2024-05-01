@@ -87,7 +87,6 @@ in {
     pkgs-unstable.telegram-desktop
     pkgs-unstable.zulip
     pkgs-unstable.slack
-    pkgs-unstable.fluent-reader # rss reader
     barrier
     zotero
     libreoffice

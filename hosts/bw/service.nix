@@ -41,30 +41,33 @@
       packages = [ pkgs.dconf ];
     };
 
+    libinput = {
+      enable = true;
+      mouse = {
+        accelProfile = "flat"; # Disable acceleration.
+        middleEmulation =
+          false; # Disable emulating middle click using left + right clicks;
+      };
+    };
+
+    displayManager = {
+      defaultSession = "none+i3";
+      sddm.autoNumlock = true;
+
+      # autoLogin = {
+      #   enable = true;
+      #   user = username;
+      # };
+    };
+
     xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "";
-      xkbOptions = "ctrl:nocaps";
+      xkb = {
+        variant = "";
+        options = "ctrl:nocaps";
+        layout = "us";
+      };
       videoDrivers = [ "nvidia" "modesetting" ];
-      libinput = {
-        enable = true;
-        mouse = {
-          accelProfile = "flat"; # Disable acceleration.
-          middleEmulation =
-            false; # Disable emulating middle click using left + right clicks;
-        };
-      };
-
-      displayManager = {
-        defaultSession = "none+i3";
-        sddm.autoNumlock = true;
-
-        # autoLogin = {
-        #   enable = true;
-        #   user = username;
-        # };
-      };
 
       windowManager.i3 = {
         enable = true;

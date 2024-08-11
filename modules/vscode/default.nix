@@ -43,5 +43,5 @@
       }];
     };
   };
-  home.packages = with pkgs; [ nixfmt ];
+  home.packages = with pkgs; [ nixfmt-classic ];
 }

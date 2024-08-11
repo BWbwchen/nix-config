@@ -42,7 +42,7 @@
     ltrace # library call monitoring
 
     python3
-    nixfmt
+    nixfmt-classic
     gnumake
     gdb
     cmake

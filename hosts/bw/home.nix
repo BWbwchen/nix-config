@@ -62,12 +62,12 @@ in {
 
     # GPU
     pciutils
-    nvtop
+    nvtopPackages.full
 
     # Programming languages
     gcc11
     default-python
-    nixfmt
+    nixfmt-classic
     gnumake
     gdb
     cmake

@@ -97,6 +97,8 @@ in {
     man-pages-posix
     linux-manual
     stdmanpages
+
+    glxinfo
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

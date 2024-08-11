@@ -18,8 +18,13 @@
     };
     bluetooth.enable = true;
     # ledger.enable = true; # Allow ledger devices to connect.
-    # opengl = {};
     nvidia.nvidiaSettings = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = [ pkgs.mesa.drivers ];
+    };
   };
 
   virtualisation.libvirtd.enable = true;

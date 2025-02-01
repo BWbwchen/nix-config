@@ -44,6 +44,7 @@ in {
     any-nix-shell # zsh support for nix-shell
     openvpn
     vlc
+    ledger
 
     # misc
     file

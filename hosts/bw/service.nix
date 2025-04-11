@@ -26,6 +26,7 @@
       extraPackages = [ pkgs.mesa.drivers ];
     };
   };
+  services.pcscd.enable = true;
 
   virtualisation.libvirtd.enable = true;
 

@@ -28,6 +28,9 @@ in {
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "nvidia-x11" ];
   home.packages = with pkgs; [
+    # RDP
+    remmina
+  
     # GUI utilities
     arandr # visual front end for xrandr
 

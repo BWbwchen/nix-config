@@ -8,7 +8,6 @@
 
   console.useXkbConfig = true;
 
-  sound.enable = true;
   security.rtkit.enable = true;
 
   hardware = {
@@ -18,11 +17,13 @@
     };
     bluetooth.enable = true;
     # ledger.enable = true; # Allow ledger devices to connect.
-    nvidia.nvidiaSettings = true;
-    opengl = {
+    nvidia = {
+      nvidiaSettings = true;
+      open = false;
+    };
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = [ pkgs.mesa.drivers ];
     };
   };

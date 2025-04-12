@@ -1,5 +1,5 @@
 { config, lib, pkgs, outputOption, # xrandr render option
-... }:
+primaryMonitor, secondaryMonitor ? primaryMonitor, ... }:
 
 let modifier = "Mod1";
 in {
@@ -90,7 +90,7 @@ in {
           "${modifier}+v" = "split v";
 
           # File
-          "${modifier}+f" = "exec ${pkgs.gnome.nautilus}/bin/nautilus";
+          "${modifier}+f" = "exec ${pkgs.nautilus}/bin/nautilus";
 
           # WorkSpace
           "${modifier}+1" = "workspace $ws1";
@@ -174,15 +174,15 @@ in {
         set $ws8 8
         set $ws9 9
 
-        workspace $ws1 output HDMI-1-0
-        workspace $ws2 output HDMI-1-0
-        workspace $ws3 output HDMI-1-0
-        workspace $ws4 output HDMI-1-0
-        workspace $ws5 output HDMI-1-0
-        workspace $ws6 output VGA-1
-        workspace $ws7 output VGA-1
-        workspace $ws8 output VGA-1
-        workspace $ws9 output VGA-1
+        workspace $ws1 output ${primaryMonitor}
+        workspace $ws2 output ${primaryMonitor}
+        workspace $ws3 output ${primaryMonitor}
+        workspace $ws4 output ${primaryMonitor}
+        workspace $ws5 output ${primaryMonitor}
+        workspace $ws6 output ${secondaryMonitor}
+        workspace $ws7 output ${secondaryMonitor}
+        workspace $ws8 output ${secondaryMonitor}
+        workspace $ws9 output ${secondaryMonitor}
       '';
     };
   };

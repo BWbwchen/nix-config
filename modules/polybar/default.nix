@@ -8,7 +8,7 @@ let
   monitor = if type == "vm" then vm_monitor else workstation_monitor;
   vm_script = "polybar master &";
   workstation_script =
-    "MONITOR=VGA-1 polybar second & MONITOR=HDMI-1-0 polybar master &";
+    "MONITOR=VGA-1 polybar second & MONITOR=HDMI-1-3 polybar master &";
 in {
   services.polybar = {
     package = pkgs.polybar.override {

@@ -45,7 +45,7 @@
   fonts = {
     # Reference: https://zhuanlan.zhihu.com/p/463403799
     packages = with pkgs; [
-      noto-fonts-cjk # for chinese font
+      noto-fonts-cjk-sans # for chinese font
       noto-fonts-emoji
       nerdfonts
     ];
@@ -61,7 +61,8 @@
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-chewing # chewing
       fcitx5-gtk

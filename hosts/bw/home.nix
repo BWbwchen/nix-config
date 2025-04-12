@@ -32,7 +32,7 @@ in {
   home.packages = with pkgs; [
     # RDP
     remmina
-  
+
     # GUI utilities
     arandr # visual front end for xrandr
 
@@ -85,6 +85,7 @@ in {
 
     # Developement tools
     pkgs-gitkraken.gitkraken
+    pkgs-unstable.code-cursor
 
     # Other
     pkgs-unstable.brave

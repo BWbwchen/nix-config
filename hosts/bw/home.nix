@@ -92,12 +92,12 @@ in {
     # Other
     pkgs-unstable.brave
     pkgs-unstable.logseq
-    pkgs-unstable.obsidian
+    # pkgs-unstable.obsidian
     pkgs-unstable.telegram-desktop
-    pkgs-unstable.zulip
-    pkgs-unstable.slack
+    # pkgs-unstable.zulip
+    # pkgs-unstable.slack
     barrier
-    zotero
+    # zotero
     libreoffice
     evince # pdf viewer
 

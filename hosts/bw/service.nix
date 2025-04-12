@@ -69,7 +69,7 @@
         options = "ctrl:nocaps";
         layout = "us";
       };
-      videoDrivers = [ "nvidia" "modesetting" ];
+      videoDrivers = [ "modesetting" ];
 
       windowManager.i3 = {
         enable = true;

@@ -4,19 +4,21 @@ with pkgs;
 let
   default-python =
     python3.withPackages (python-packages: with python-packages; [ pip ]);
+  primaryMonitor = "HDMI-1-3";
+  secondaryMonitor = "VGA-1";
 in {
   imports = [
     (import ../../sys-modules/home-manager.nix {
       inherit config lib pkgs user;
       state_version = "22.11";
     })
-    ../../modules/polybar # polybar
+    (import ../../modules/polybar ({
+      inherit config lib pkgs primaryMonitor secondaryMonitor;
+    })) # polybar
     (import ../../modules/i3 ({
-      inherit config lib pkgs;
-      primaryMonitor = "HDMI-1-3";
-      secondaryMonitor = "VGA-1";
+      inherit config lib pkgs primaryMonitor secondaryMonitor;
       outputOption =
-        "--output VGA-1 --mode 1920x1080 --pos 1920x0 --output HDMI-1-3 --primary --mode 1920x1080 --pos 0x0";
+        "--output ${secondaryMonitor} --mode 1920x1080 --pos 1920x0 --output ${primaryMonitor} --primary --mode 1920x1080 --pos 0x0";
     })) # i3
     ../../modules/redshift
     ../../modules/custom-font

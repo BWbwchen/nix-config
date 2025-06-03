@@ -19,6 +19,7 @@
       "editor.fontSize" = 17;
       "editor.formatOnSave" = true;
       "editor.fontFamily" = "Monaco, 'Droid Sans Mono', 'monospace', monospace";
+      "editor.rulers" = [80 120];
 
       "explorer.confirmDelete" = false;
 

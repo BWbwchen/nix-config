@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, pkgs-gitkraken, user, ... }:
+{ config, lib, pkgs, pkgs-unstable, user, ... }:
 
 with pkgs;
 let
@@ -24,8 +24,6 @@ in {
     ../../modules/custom-font
     ../../modules/firefox
     ../../modules/alacritty
-    ../../modules/emacs
-    ../../modules/wakatime
     ../../modules/vscode
   ];
 
@@ -73,31 +71,17 @@ in {
     nvtopPackages.full
 
     # Programming languages
-    gcc11
     default-python
     nixfmt-classic
-    gnumake
-    gdb
-    cmake
-
-    # Clang and Clang tool
-    # llvmPackages_15.stdenv # clang
-    # llvmPackages_15.openmp # clang
-    clang-tools_15 # for clangd
 
     # Developement tools
-    pkgs-gitkraken.gitkraken
     pkgs-unstable.code-cursor
 
     # Other
     pkgs-unstable.brave
     pkgs-unstable.logseq
-    # pkgs-unstable.obsidian
     pkgs-unstable.telegram-desktop
-    # pkgs-unstable.zulip
-    # pkgs-unstable.slack
     barrier
-    # zotero
     libreoffice
     evince # pdf viewer
 

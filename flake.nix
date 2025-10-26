@@ -8,13 +8,9 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # gitkraken with all free feature.
-    gitkraken-allfree.url =
-      "github:nixos/nixpkgs/da5adce0ffaff10f6d0fee72a02a5ed9d01b52fc";
   };
 
-  outputs =
-    inputs@{ self, nixpkgs, nixpkgs-unstable, gitkraken-allfree, home-manager }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager }:
     let
       user = "bwbwchen";
       system = "x86_64-linux";
@@ -32,14 +28,13 @@
       pkgs = import nixpkgs pkgs-config;
       lib = nixpkgs.lib;
       pkgs-unstable = import nixpkgs-unstable pkgs-unstable-config;
-      pkgs-gitkraken = import gitkraken-allfree pkgs-config;
     in {
       nixosConfigurations = {
         bw = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit user pkgs lib;
-            inherit pkgs-unstable pkgs-gitkraken;
+            inherit pkgs-unstable;
           };
           modules = [
             ./hosts/bw/configuration.nix
@@ -52,7 +47,7 @@
                 users.${user} = import ./hosts/bw/home.nix;
                 extraSpecialArgs = {
                   inherit user pkgs;
-                  inherit pkgs-unstable pkgs-gitkraken;
+                  inherit pkgs-unstable;
                 };
               };
             }

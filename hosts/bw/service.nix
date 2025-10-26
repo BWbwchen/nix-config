@@ -11,10 +11,6 @@
   security.rtkit.enable = true;
 
   hardware = {
-    pulseaudio = {
-      enable = false; # Since we use pipewire
-      # extraConfig = "load-module module-combine-sink";
-    };
     bluetooth.enable = true;
     # ledger.enable = true; # Allow ledger devices to connect.
     nvidia = {
@@ -24,19 +20,23 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = [ pkgs.mesa.drivers ];
+      extraPackages = [ pkgs.mesa ];
     };
   };
-  services.pcscd.enable = true;
 
   virtualisation.libvirtd.enable = true;
 
   # services.dbus.enable = true;
   # services.dbus.packages = with pkgs; [ dconf ];
   services = {
+    pcscd.enable = true;
     gvfs.enable = true; # Nautilus file manager.
     joycond.enable = true;
     blueman.enable = true;
+    pulseaudio = {
+      enable = false; # Since we use pipewire
+      # extraConfig = "load-module module-combine-sink";
+    };
 
     dbus = {
       enable = true;

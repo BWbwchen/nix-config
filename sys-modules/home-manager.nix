@@ -23,7 +23,7 @@
 
   programs.zsh = {
     enable = true;
-    initExtra = ''
+    initContent = ''
       export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin:$PATH;
       export LD_LIBRARY_PATH="";
     '';

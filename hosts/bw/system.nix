@@ -47,7 +47,7 @@
     packages = with pkgs; [
       noto-fonts-cjk-sans # for chinese font
       noto-fonts-emoji
-      nerdfonts
+      nerd-fonts.fira-code
     ];
     fontconfig = {
       enable = true;

@@ -106,8 +106,8 @@ in {
     };
     theme = {
       # name = "WhiteSur-Dark";
-      name = "WhiteSur-Dark-solid";
-      package = pkgs.whitesur-gtk-theme.override { nautilusSize = "180"; };
+      name = "WhiteSur-dark-solid";
+      package = pkgs.whitesur-gtk-theme;
     };
     cursorTheme = {
       name = "capitaine-cursors";

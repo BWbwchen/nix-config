@@ -15,7 +15,13 @@
     # ledger.enable = true; # Allow ledger devices to connect.
     nvidia = {
       nvidiaSettings = true;
+      modesetting.enable = true;
       open = false;
+      prime = {
+        sync.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
     graphics = {
       enable = true;
@@ -69,7 +75,8 @@
         options = "ctrl:nocaps";
         layout = "us";
       };
-      videoDrivers = [ "modesetting" ];
+      videoDrivers = [ "nvidia" ];
+      # videoDrivers = [ "modesetting" ];
 
       windowManager.i3 = {
         enable = true;

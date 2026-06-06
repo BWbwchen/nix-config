@@ -4,8 +4,8 @@ with pkgs;
 let
   default-python =
     python3.withPackages (python-packages: with python-packages; [ pip ]);
-  primaryMonitor = "HDMI-1-3";
-  secondaryMonitor = "VGA-1";
+  primaryMonitor = "HDMI-0";
+  secondaryMonitor = "VGA-1-1";
 in {
   imports = [
     (import ../../sys-modules/home-manager.nix {
@@ -92,6 +92,7 @@ in {
     stdmanpages
 
     glxinfo
+    steam-run
   ];
   home.pointerCursor = {
     name = "capitaine-cursors";

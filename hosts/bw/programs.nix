@@ -8,4 +8,12 @@
     enableSSHSupport = true;
     # pinentryFlavor = "curses"; # leave pinentryFlavor null for auto-system detection
   };
+  programs.steam = {
+    enable = true; 
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+      # protonup-qt
+    ];
+  };
+  programs.gamemode.enable = true;
 }

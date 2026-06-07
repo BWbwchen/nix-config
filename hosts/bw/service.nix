@@ -22,6 +22,7 @@
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     };
     graphics = {
       enable = true;
@@ -80,7 +81,6 @@
 
       windowManager.i3 = {
         enable = true;
-        package = pkgs.i3-gaps;
       };
     };
     pipewire = {

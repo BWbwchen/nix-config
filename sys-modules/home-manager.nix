@@ -36,7 +36,7 @@
     curl
 
     htop
-    neofetch
+    fastfetch
 
     # misc
     gnupg

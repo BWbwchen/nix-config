@@ -7,7 +7,6 @@ in {
     enable = true;
     windowManager.i3 = {
       enable = true;
-      package = pkgs.i3-gaps;
       config = {
         inherit modifier;
 
@@ -73,7 +72,7 @@ in {
 
           # Screenshot
           "${modifier}+p" =
-            "exec ${pkgs.libsForQt5.spectacle}/bin/spectacle -r";
+            "exec ${pkgs.kdePackages.spectacle}/bin/spectacle -r";
 
           # Movement
           "${modifier}+h" = "focus left";
@@ -147,7 +146,7 @@ in {
             notification = false;
           }
           {
-            command = "${pkgs.xorg.xrandr}/bin/xrandr ${outputOption}";
+            command = "${pkgs.xrandr}/bin/xrandr ${outputOption}";
             always = true;
             notification = false;
           }
@@ -157,7 +156,7 @@ in {
             notification = false;
           }
           {
-            command = "barrier";
+            command = "deskflow";
             always = true;
             notification = false;
           }

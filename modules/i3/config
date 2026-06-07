@@ -249,7 +249,7 @@ exec_always --no-startup-id /home/bwbwchen/.config/polybar/launch.sh;
 exec_always --no-startup-id /usr/bin/fcitx;
 exec_always --no-startup-id redshift;
 exec_always --no-startup-id /home/bwbwchen/Telegram/Telegram;
-exec_always --no-startup-id /snap/bin/barrier;
+exec_always --no-startup-id /snap/bin/deskflow;
 exec_always --no-startup-id feh --bg-scale /home/bwbwchen/Pictures/i3-wallpaper.jpg
 
 

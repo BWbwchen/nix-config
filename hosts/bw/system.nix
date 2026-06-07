@@ -23,7 +23,7 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      24800 # barrier
+      24800 # deskflow
     ];
   };
 
@@ -46,16 +46,16 @@
     # Reference: https://zhuanlan.zhihu.com/p/463403799
     packages = with pkgs; [
       noto-fonts-cjk-sans # for chinese font
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       nerd-fonts.fira-code
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-        monospace = [ "Meslo" "Monaco" "Noto Sans Mono CJK SC" ];
-        serif = [ "Noto Sans CJK SC" ];
-        sansSerif = [ "Noto Serif CJK SC" ];
+        monospace = [ "Meslo" "Monaco" "Noto Sans Mono CJK TC" ];
+        serif = [ "Noto Sans CJK TC" ];
+        sansSerif = [ "Noto Serif CJK TC" ];
       };
     };
   };
@@ -66,7 +66,7 @@
     fcitx5.addons = with pkgs; [
       fcitx5-chewing # chewing
       fcitx5-gtk
-      fcitx5-configtool
+      qt6Packages.fcitx5-configtool
     ];
   };
 

@@ -4,8 +4,6 @@
   programs.git = {
     #    package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = "BWbwchen";
-    userEmail = "tim.chenbw@gmail.com";
     ignores = [ ".direnv" ];
 
     lfs.enable = true;
@@ -15,8 +13,12 @@
       signByDefault = true;
     };
 
-    extraConfig = {
-
+    settings = {
+      user = {
+        name = "BWbwchen";
+        email = "tim.chenbw@gmail.com";
+      };
+      
       core = {
         editor = "nvim";
         ignorecase = false;

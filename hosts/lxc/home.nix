@@ -13,7 +13,7 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
 
-    neofetch
+    fastfetch
 
     # archives
     zip
@@ -42,7 +42,7 @@
     ltrace # library call monitoring
 
     python3
-    nixfmt-classic
+    nixfmt
     gnumake
     gdb
     cmake

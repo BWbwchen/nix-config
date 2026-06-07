@@ -32,6 +32,8 @@ in {
   home.packages = with pkgs; [
     # RDP
     remmina
+    gpclient
+    chromium
 
     # GUI utilities
     arandr # visual front end for xrandr
@@ -62,8 +64,8 @@ in {
     pulseaudioFull # for pacmd, voice control
     # Command line utilities
     gtk3
-    libsForQt5.gwenview
-    libsForQt5.kde-gtk-config
+    kdePackages.gwenview
+    kdePackages.kde-gtk-config
     lm_sensors
 
     # GPU
@@ -72,7 +74,7 @@ in {
 
     # Programming languages
     default-python
-    nixfmt-classic
+    nixfmt
 
     # Developement tools
     pkgs-unstable.code-cursor
@@ -81,7 +83,7 @@ in {
     pkgs-unstable.brave
     pkgs-unstable.logseq
     pkgs-unstable.telegram-desktop
-    barrier
+    deskflow
     libreoffice
     evince # pdf viewer
 
@@ -91,7 +93,7 @@ in {
     linux-manual
     stdmanpages
 
-    glxinfo
+    # mesa-demos
     steam-run
   ];
   home.pointerCursor = {
@@ -127,6 +129,7 @@ in {
         "file:///home/bwbwchen/work work"
       ];
     };
+    gtk4.theme = config.gtk.theme;
   };
   xdg.userDirs = {
     enable = true;
@@ -138,6 +141,7 @@ in {
     publicShare = null;
     templates = null;
     videos = null;
+    setSessionVariables = true;
   };
 
   home.sessionVariables.GTK_THEME = "WhiteSur-Dark-solid";

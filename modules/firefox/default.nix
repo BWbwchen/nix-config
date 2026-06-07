@@ -28,6 +28,7 @@
         userChrome = builtins.readFile ./userChrome.css;
       };
     };
+    configPath = ".mozilla/firefox";
   };
 
   home.sessionVariables.TZ = "/etc/localtime";

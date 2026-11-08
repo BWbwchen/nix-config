@@ -26,6 +26,7 @@
     ];
     primaryBar = "notebook";
     state_version = "22.11";
+    gitSignEnabled = false;
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "nvidia-x11" ];

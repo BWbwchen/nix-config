@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+  # optional arg: use git sign or not.
+  gitSignEnabled = config._module.args.gitSignEnabled or true;
+in {
   programs.git = {
     #    package = pkgs.gitAndTools.gitFull;
     enable = true;
@@ -10,7 +13,7 @@
 
     signing = {
       key = "AF1C0F596A8F1346D3070412A856CC61E240F91A";
-      signByDefault = true;
+      signByDefault = gitSignEnabled;
     };
 
     settings = {

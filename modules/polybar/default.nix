@@ -14,6 +14,34 @@ let
   bar = lib.throwIfNot (builtins.elem primaryBar [ "master" "notebook" ])
     ''polybar: primaryBar must be "master" or "notebook", got "${primaryBar}"''
     primaryBar;
+
+  # Not internal/battery: it derives "charging" from the battery's own status and never
+  # reads the AC adapter, so it is wrong e.g. with a charge threshold (AC plugged but
+  # "Not charging"). Read the AC adapter ourselves, with bash builtins only:
+  #   BAT# = AC connected, BAT = running on battery
+  batteryScript = pkgs.writeShellScript "polybar-battery" ''
+    bat=/sys/class/power_supply/BAT0
+    [ -r $bat/capacity ] || exit 0 # no battery: show nothing
+    read -r cap < $bat/capacity
+
+    ac=
+    for d in /sys/class/power_supply/*; do
+      [ -r "$d/type" ] || continue
+      read -r type < "$d/type"
+      if [ "$type" = Mains ] && [ -r "$d/online" ]; then
+        read -r online < "$d/online"
+        [ "$online" = 1 ] && ac='#'
+      fi
+    done
+
+    if [ "$cap" -ge 98 ]; then
+      echo "BAT$ac full"
+    elif [ -z "$ac" ] && [ "$cap" -le 15 ]; then
+      echo "%{F#ff5555}BAT LOW $cap%%{F-}"
+    else
+      echo "BAT$ac $cap%"
+    fi
+  '';
 in {
   services.polybar = {
     package = pkgs.polybar.override {
@@ -234,24 +262,10 @@ in {
 
       # --- modules for the notebook bar ---
       "module/battery" = {
-        type = "internal/battery";
-        # battery = "BAT0"; # default, see /sys/class/power_supply
-        full-at = 98;
-        low-at = 15;
-        poll-interval = 5;
-
-        format-charging = "<label-charging>";
-        format-charging-underline = "#5ce05c";
-        label-charging = "BAT+ %percentage%%";
-        format-discharging = "<label-discharging>";
-        format-discharging-underline = "#5ce05c";
-        label-discharging = "BAT %percentage%%";
-        format-low = "<label-low>";
-        format-low-underline = "#ff5555";
-        label-low = "BAT LOW %percentage%%";
-        format-full = "<label-full>";
-        format-full-underline = "#5ce05c";
-        label-full = "BAT full";
+        type = "custom/script";
+        interval = 5;
+        exec = "${batteryScript}";
+        format-underline = "#5ce05c";
       };
       "module/backlight" = {
         type = "custom/script";
@@ -261,7 +275,7 @@ in {
         exec =
           "${pkgs.brightnessctl}/bin/brightnessctl -m | ${pkgs.coreutils}/bin/cut -d, -f4";
         scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-        scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -n set 5%-"; # -n: never go below 1
         format-underline = "#fba922";
       };
       "module/network" = {

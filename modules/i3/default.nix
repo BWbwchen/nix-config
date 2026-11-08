@@ -134,6 +134,12 @@ in {
           "XF86AudioLowerVolume" =
             "exec ${pkgs.pamixer}/bin/pamixer --decrease 2";
           "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+
+          # Screen Brightness (-n: never go below 1, so the screen is not turned off)
+          "XF86MonBrightnessUp" =
+            "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+          "XF86MonBrightnessDown" =
+            "exec ${pkgs.brightnessctl}/bin/brightnessctl -n set 5%-";
         };
 
         modes.resize = {

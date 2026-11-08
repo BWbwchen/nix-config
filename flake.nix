@@ -10,7 +10,13 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -27,10 +33,18 @@
         ];
       };
 
-      mkHost = host: user:
+      mkHost =
+        host: user:
         lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit user lib pkgs pkgs-unstable; };
+          specialArgs = {
+            inherit
+              user
+              lib
+              pkgs
+              pkgs-unstable
+              ;
+          };
           modules = [
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
@@ -44,9 +58,11 @@
             }
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         bw = mkHost "bw" "bwbwchen";
+        tp = mkHost "tp" "bwbwchen";
       };
     };
 }

@@ -1,9 +1,6 @@
 { config, lib, pkgs, pkgs-unstable, ... }:
 
-let
-  primaryMonitor = "HDMI-0";
-  secondaryMonitor = "VGA-1-1";
-in {
+{
   imports = [
     ../../sys-modules/home-manager.nix
     ../../modules/polybar # polybar
@@ -17,10 +14,12 @@ in {
 
   # extra arguments consumed by the imported modules
   _module.args = {
-    inherit primaryMonitor secondaryMonitor;
+    # the first monitor is the primary one
+    monitors = [
+      { name = "HDMI-0"; pos = "0x0"; }
+      { name = "VGA-1-1"; pos = "1920x0"; }
+    ];
     state_version = "22.11";
-    outputOption =
-      "--output ${secondaryMonitor} --mode 1920x1080 --pos 1920x0 --output ${primaryMonitor} --primary --mode 1920x1080 --pos 0x0";
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:

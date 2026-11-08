@@ -6,9 +6,6 @@
   ...
 }:
 
-let
-  primaryMonitor = "HDMI-0";
-in
 {
   imports = [
     ../../sys-modules/home-manager.nix
@@ -23,9 +20,11 @@ in
 
   # extra arguments consumed by the imported modules
   _module.args = {
-    inherit primaryMonitor secondaryMonitor;
+    # single monitor: just one entry
+    monitors = [
+      { name = "HDMI-0"; }
+    ];
     state_version = "22.11";
-    outputOption = "--output ${primaryMonitor} --primary --mode 1920x1080 --pos 0x0";
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "nvidia-x11" ];

@@ -1,14 +1,9 @@
-{ config, lib, pkgs, primaryMonitor, secondaryMonitor, ... }:
+{ config, lib, pkgs, monitors, ... }:
 
 let
-  # type = "vm";
-  type = "workstation";
-  vm_monitor = "\${env:MONITOR}";
-  workstation_monitor = "\${env:MONITOR}";
-  monitor = if type == "vm" then vm_monitor else workstation_monitor;
-  vm_script = "polybar master &";
-  workstation_script =
-    "MONITOR=${secondaryMonitor} polybar second & MONITOR=${primaryMonitor} polybar master &";
+  # polybar syntax: read the bar's output from the $MONITOR environment variable,
+  # which `script` below sets for each bar.
+  monitorFromEnv = "\${env:MONITOR}";
 in {
   services.polybar = {
     package = pkgs.polybar.override {
@@ -50,7 +45,7 @@ in {
       normal_bar = {
         enable-ipc = true;
         bottom = false;
-        monitor = monitor;
+        monitor = monitorFromEnv;
         height = 30;
         width = "100%";
 
@@ -221,7 +216,11 @@ in {
         format-foreground = foreground;
       };
     };
-    script = if type == "vm" then vm_script else workstation_script;
+    # the first monitor is the primary one and gets the "master" bar (with tray),
+    # every other monitor gets a "second" bar.
+    script = lib.concatStringsSep " " (lib.imap0 (i: m:
+      "MONITOR=${m.name} polybar ${if i == 0 then "master" else "second"} &")
+      monitors);
   };
   home.packages = with pkgs; [ pamixer ];
 }

@@ -1,7 +1,23 @@
-{ config, lib, pkgs, outputOption, # xrandr render option
-primaryMonitor, secondaryMonitor ? primaryMonitor, ... }:
+{ config, lib, pkgs, monitors, ... }:
 
-let modifier = "Mod1";
+let
+  modifier = "Mod1";
+
+  # checked lazily on first use (must not be forced while the module args are resolved)
+  ms = lib.throwIf (monitors == [ ]) "i3: `monitors` needs at least one monitor" monitors;
+
+  # xrandr render option, the first monitor is the primary one.
+  # `mode` defaults to 1920x1080 and `pos` to 0x0.
+  outputOption = lib.concatStringsSep " " (lib.imap0 (i: m:
+    "--output ${m.name}${lib.optionalString (i == 0) " --primary"} --mode ${m.mode or "1920x1080"} --pos ${m.pos or "0x0"}")
+    ms);
+
+  # spread workspaces 1-9 evenly over the monitors, in order:
+  # 1 monitor -> all on it, 2 monitors -> ws1-5 / ws6-9, ...
+  perMonitor = (9 + lib.length ms - 1) / lib.length ms;
+  workspaceOutput = lib.concatMapStringsSep "\n" (i:
+    "workspace $ws${toString i} output ${(lib.elemAt ms ((i - 1) / perMonitor)).name}")
+    (lib.range 1 9);
 in {
   xsession = {
     enable = true;
@@ -173,15 +189,7 @@ in {
         set $ws8 8
         set $ws9 9
 
-        workspace $ws1 output ${primaryMonitor}
-        workspace $ws2 output ${primaryMonitor}
-        workspace $ws3 output ${primaryMonitor}
-        workspace $ws4 output ${primaryMonitor}
-        workspace $ws5 output ${primaryMonitor}
-        workspace $ws6 output ${secondaryMonitor}
-        workspace $ws7 output ${secondaryMonitor}
-        workspace $ws8 output ${secondaryMonitor}
-        workspace $ws9 output ${secondaryMonitor}
+        ${workspaceOutput}
       '';
     };
   };

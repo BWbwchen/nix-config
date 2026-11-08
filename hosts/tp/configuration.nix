@@ -7,6 +7,10 @@
     ./system.nix # some system wide settings.
     ./programs.nix # some programs.
     ./service.nix # some system services.
-    ./power.nix # power saving, sleep and hibernate (MacBook-like).
+    # power saving, sleep and hibernate (MacBook-like).
+    (import ./power.nix {
+      swapSizeMiB = 16 * 1024; # keep >= RAM, see `free -m`
+      swapResumeOffset = null; # see the two steps in power.nix
+    })
   ];
 }

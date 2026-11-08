@@ -1,16 +1,20 @@
+# Arguments (passed from configuration.nix):
+#   swapSizeMiB       size of the swap file in MiB, keep >= RAM (see `free -m`)
+#   swapResumeOffset  physical offset of the swap file, needed to resume from
+#                     hibernate; null = hibernate stays off
+#
+# tp was installed without any swap, so hibernate needs a swap file, and
+# resuming from a swap file needs its physical offset on disk, which only
+# exists once the file does. Hence two steps:
+#   1. rebuild with `swapResumeOffset = null`: creates the swap file, the lid
+#      does a plain suspend, hibernate stays off.
+#   2. get the offset, pass it in configuration.nix, rebuild and REBOOT once:
+#        sudo filefrag -v /var/lib/swapfile | awk '$1=="0:" { print substr($4, 1, length($4)-2) }'
+{ swapSizeMiB, swapResumeOffset }:
+
 { config, lib, ... }:
 
 let
-  # --- swap file + hibernate -------------------------------------------------
-  # tp was installed without any swap, so hibernate needs a swap file, and
-  # resuming from a swap file needs its physical offset on disk, which only
-  # exists once the file does. Hence two steps:
-  #   1. rebuild with `swapResumeOffset = null`: creates the swap file, the lid
-  #      does a plain suspend, hibernate stays off.
-  #   2. get the offset, put it below, rebuild and REBOOT once:
-  #        sudo filefrag -v /var/lib/swapfile | awk '$1=="0:" { print substr($4, 1, length($4)-2) }'
-  swapSizeMiB = 16 * 1024; # keep >= RAM, see `free -m`
-  swapResumeOffset = null;
   hibernateReady = swapResumeOffset != null;
 
   # what closing the lid / tapping the power button does

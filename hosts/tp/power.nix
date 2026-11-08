@@ -1,24 +1,19 @@
-# Arguments (passed from configuration.nix):
-#   swapSizeMiB       size of the swap file in MiB, keep >= RAM (see `free -m`)
-#   swapResumeOffset  physical offset of the swap file, needed to resume from
-#                     hibernate; null = hibernate stays off
+# Argument (passed from configuration.nix):
+#   swapSizeMiB  size of the swap file in MiB, keep >= RAM (see `free -m`)
 #
-# tp was installed without any swap, so hibernate needs a swap file, and
-# resuming from a swap file needs its physical offset on disk, which only
-# exists once the file does. Hence two steps:
-#   1. rebuild with `swapResumeOffset = null`: creates the swap file, the lid
-#      does a plain suspend, hibernate stays off.
-#   2. get the offset, pass it in configuration.nix, rebuild and REBOOT once:
-#        sudo filefrag -v /var/lib/swapfile | awk '$1=="0:" { print substr($4, 1, length($4)-2) }'
-{ swapSizeMiB, swapResumeOffset }:
+# tp was installed without any swap, so a swap file is added for hibernate.
+# resume= / resume_offset= are left out on purpose: with systemd in the initrd
+# (boot.initrd.systemd.enable, the default) systemd-sleep records where it wrote
+# the hibernation image in the HibernateLocation EFI variable and the initrd
+# resumes from there. This needs UEFI boot (tp has it).
+# https://wiki.nixos.org/wiki/Power_Management#Hibernation
+{ swapSizeMiB }:
 
-{ config, lib, ... }:
+{ ... }:
 
 let
-  hibernateReady = swapResumeOffset != null;
-
   # what closing the lid / tapping the power button does
-  sleepAction = if hibernateReady then "suspend-then-hibernate" else "suspend";
+  sleepAction = "suspend-then-hibernate";
 in
 {
   # --- swap --------------------------------------------------------------------
@@ -32,13 +27,9 @@ in
   # file only takes the overflow and the hibernation image.
   zramSwap.enable = true;
 
-  # --- hibernate ---------------------------------------------------------------
-  boot.resumeDevice = lib.mkIf hibernateReady config.fileSystems."/".device;
-  boot.kernelParams = [
-    # prefer S3 ("deep") over s2idle when the firmware offers it: much lower drain
-    # while asleep. Ignored when the firmware has no S3.
-    "mem_sleep_default=deep"
-  ] ++ lib.optional hibernateReady "resume_offset=${toString swapResumeOffset}";
+  # prefer S3 ("deep") over s2idle when the firmware offers it: much lower drain
+  # while asleep. Ignored when the firmware has no S3.
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
 
   # --- MacBook-like sleep ------------------------------------------------------
   services.logind.settings.Login = {
@@ -64,9 +55,9 @@ in
   };
   services.thermald.enable = true; # Intel thermal management
 
-  # act on a critically low battery instead of dying hard
+  # hibernate on a critically low battery instead of dying hard
   services.upower = {
     enable = true;
-    criticalPowerAction = if hibernateReady then "Hibernate" else "PowerOff";
+    criticalPowerAction = "Hibernate";
   };
 }

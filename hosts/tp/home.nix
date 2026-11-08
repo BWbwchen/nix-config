@@ -22,7 +22,7 @@
   _module.args = {
     # single monitor: just one entry
     monitors = [
-      { name = "HDMI-0"; }
+      { name = "eDP-1"; }
     ];
     primaryBar = "notebook";
     state_version = "22.11";

@@ -47,8 +47,6 @@
     in {
       nixosConfigurations = {
         bw = mkHost "bw" "bwbwchen";
-        # LXC container
-        lxc = mkHost "lxc" "bw";
       };
     };
 }

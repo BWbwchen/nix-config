@@ -4,6 +4,16 @@ let
   # polybar syntax: read the bar's output from the $MONITOR environment variable,
   # which `script` below sets for each bar.
   monitorFromEnv = "\${env:MONITOR}";
+
+  # optional arg: which bar runs on the primary (first) monitor, "master" (default) or
+  # "notebook". Read from _module.args because the module system ignores `? default`
+  # on module function arguments.
+  primaryBar = config._module.args.primaryBar or "master";
+
+  # checked lazily on first use (must not be forced while the module args are resolved)
+  bar = lib.throwIfNot (builtins.elem primaryBar [ "master" "notebook" ])
+    ''polybar: primaryBar must be "master" or "notebook", got "${primaryBar}"''
+    primaryBar;
 in {
   services.polybar = {
     package = pkgs.polybar.override {
@@ -81,8 +91,14 @@ in {
       modules-left = "i3 ";
       modules-center = "date";
       modules-right = "cpu memory pavolume powermenu";
+      # notebook: also show wifi, screen brightness and battery
+      modules-right-notebook =
+        "cpu memory network backlight pavolume battery powermenu";
     in {
       "bar/master" = fonts // normal_bar // tray_setting // i3_showing;
+      "bar/notebook" = fonts // normal_bar // tray_setting // i3_showing // {
+        modules-right = modules-right-notebook;
+      };
       "bar/second" = fonts // normal_bar // i3_showing;
       # "module/xwindow" = {
       #   type = "internal/xwindow";
@@ -215,11 +231,59 @@ in {
         format-underline = "#0a6cf5";
         format-foreground = foreground;
       };
+
+      # --- modules for the notebook bar ---
+      "module/battery" = {
+        type = "internal/battery";
+        # battery = "BAT0"; # default, see /sys/class/power_supply
+        full-at = 98;
+        low-at = 15;
+        poll-interval = 5;
+
+        format-charging = "<label-charging>";
+        format-charging-underline = "#5ce05c";
+        label-charging = "BAT+ %percentage%%";
+        format-discharging = "<label-discharging>";
+        format-discharging-underline = "#5ce05c";
+        label-discharging = "BAT %percentage%%";
+        format-low = "<label-low>";
+        format-low-underline = "#ff5555";
+        label-low = "BAT LOW %percentage%%";
+        format-full = "<label-full>";
+        format-full-underline = "#5ce05c";
+        label-full = "BAT full";
+      };
+      "module/backlight" = {
+        type = "custom/script";
+        interval = 1;
+        label = "BL %output%";
+        # brightnessctl -m prints "device,class,value,percent,max"; keep the percent
+        exec =
+          "${pkgs.brightnessctl}/bin/brightnessctl -m | ${pkgs.coreutils}/bin/cut -d, -f4";
+        scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+        scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        format-underline = "#fba922";
+      };
+      "module/network" = {
+        type = "internal/network";
+        interface-type = "wireless"; # auto-detect the wifi interface
+        interval = 3;
+
+        # click: open nmtui to pick / connect to a network
+        format-connected = "<label-connected>";
+        format-connected-underline = "#9f78e1";
+        label-connected =
+          "%{A1:${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui:}WIFI %essid% (%signal%%)%{A}";
+        format-disconnected = "<label-disconnected>";
+        format-disconnected-underline = "#9f78e1";
+        label-disconnected =
+          "%{A1:${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui:}WIFI off%{A}";
+      };
     };
-    # the first monitor is the primary one and gets the "master" bar (with tray),
+    # the first monitor is the primary one and gets the selected bar (with tray),
     # every other monitor gets a "second" bar.
     script = lib.concatStringsSep " " (lib.imap0 (i: m:
-      "MONITOR=${m.name} polybar ${if i == 0 then "master" else "second"} &")
+      "MONITOR=${m.name} polybar ${if i == 0 then bar else "second"} &")
       monitors);
   };
   home.packages = with pkgs; [ pamixer ];

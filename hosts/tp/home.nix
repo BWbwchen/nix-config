@@ -24,6 +24,7 @@
     monitors = [
       { name = "HDMI-0"; }
     ];
+    primaryBar = "notebook";
     state_version = "22.11";
   };
 

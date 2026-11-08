@@ -1,12 +1,8 @@
-{ config, lib, pkgs, user, ... }:
+{ pkgs, user, ... }:
 
 {
   imports = [
     ../../sys-modules/i18n.nix # .
-    (import ../../sys-modules/networking.nix {
-      inherit config lib pkgs;
-      host_name = user;
-    }) # .
   ];
 
   boot.loader = {
@@ -20,9 +16,10 @@
 
   time.timeZone = "Asia/Taipei";
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
+  networking = {
+    hostName = user;
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [
       24800 # deskflow
     ];
   };
@@ -37,8 +34,12 @@
     isNormalUser = true;
     group = "${user}";
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "audio" "docker" ];
-    packages = with pkgs; [ ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -53,7 +54,11 @@
       enable = true;
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-        monospace = [ "Meslo" "Monaco" "Noto Sans Mono CJK TC" ];
+        monospace = [
+          "Meslo"
+          "Monaco"
+          "Noto Sans Mono CJK TC"
+        ];
         serif = [ "Noto Sans CJK TC" ];
         sansSerif = [ "Noto Serif CJK TC" ];
       };

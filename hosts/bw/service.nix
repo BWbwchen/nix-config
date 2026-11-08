@@ -1,7 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-
   imports = [
     ../../sys-modules/ssh.nix # ssh
   ];
@@ -54,8 +53,7 @@
       enable = true;
       mouse = {
         accelProfile = "flat"; # Disable acceleration.
-        middleEmulation =
-          false; # Disable emulating middle click using left + right clicks;
+        middleEmulation = false; # Disable emulating middle click using left + right clicks;
       };
     };
 
@@ -79,9 +77,7 @@
       videoDrivers = [ "nvidia" ];
       # videoDrivers = [ "modesetting" ];
 
-      windowManager.i3 = {
-        enable = true;
-      };
+      windowManager.i3.enable = true;
     };
     pipewire = {
       enable = true;

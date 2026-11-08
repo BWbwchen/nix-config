@@ -10,15 +10,15 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager }:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
-      user = "bwbwchen";
       system = "x86_64-linux";
-      pkgs-config = {
+      lib = nixpkgs.lib;
+      pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-      pkgs-unstable-config = {
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
@@ -26,60 +26,29 @@
           "electron-39.8.10" # for obsidian/logseq
         ];
       };
-      pkgs = import nixpkgs pkgs-config;
-      lib = nixpkgs.lib;
-      pkgs-unstable = import nixpkgs-unstable pkgs-unstable-config;
+
+      mkHost = host: user:
+        lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit user lib pkgs pkgs-unstable; };
+          modules = [
+            ./hosts/${host}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${user} = import ./hosts/${host}/home.nix;
+                extraSpecialArgs = { inherit user pkgs pkgs-unstable; };
+              };
+            }
+          ];
+        };
     in {
       nixosConfigurations = {
-        bw = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit user pkgs lib;
-            inherit pkgs-unstable;
-          };
-          modules = [
-            ./hosts/bw/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${user} = import ./hosts/bw/home.nix;
-                extraSpecialArgs = {
-                  inherit user pkgs;
-                  inherit pkgs-unstable;
-                };
-              };
-            }
-          ];
-        };
-
+        bw = mkHost "bw" "bwbwchen";
         # LXC container
-        lxc = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            user = "bw";
-            inherit pkgs lib;
-            inherit pkgs-unstable;
-          };
-          modules = [
-            ./hosts/lxc/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users."bw" = import ./hosts/lxc/home.nix;
-                extraSpecialArgs = {
-                  user = "bw";
-                  inherit pkgs pkgs-unstable;
-                };
-              };
-            }
-          ];
-        };
+        lxc = mkHost "lxc" "bw";
       };
     };
 }

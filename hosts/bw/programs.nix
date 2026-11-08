@@ -1,19 +1,21 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  programs.nix-ld.enable = true;
-  programs.dconf.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    # pinentryFlavor = "curses"; # leave pinentryFlavor null for auto-system detection
+  programs = {
+    nix-ld.enable = true;
+    dconf.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # pinentryFlavor = "curses"; # leave pinentryFlavor null for auto-system detection
+    };
+    steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+        # protonup-qt
+      ];
+    };
+    gamemode.enable = true;
   };
-  programs.steam = {
-    enable = true; 
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-      # protonup-qt
-    ];
-  };
-  programs.gamemode.enable = true;
 }

@@ -34,9 +34,7 @@ let
       fi
     done
 
-    if [ "$cap" -ge 98 ]; then
-      echo "BAT$ac full"
-    elif [ -z "$ac" ] && [ "$cap" -le 15 ]; then
+    if [ -z "$ac" ] && [ "$cap" -le 15 ]; then
       echo "%{F#ff5555}BAT LOW $cap%%{F-}"
     else
       echo "BAT$ac $cap%"
@@ -168,7 +166,7 @@ in {
         type = "internal/memory";
         format = "<label>";
         interval = 2;
-        label = "RAM: %gb_used% / %percentage_used:2%%  SWAP: %mb_swap_used%";
+        label = "RAM: %gb_used% / %percentage_used:2%%";
         format-underline = "#FF4231";
       };
       "module/date" = {
@@ -287,7 +285,7 @@ in {
         format-connected = "<label-connected>";
         format-connected-underline = "#9f78e1";
         label-connected =
-          "%{A1:${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui:}WIFI %essid% (%signal%%)%{A}";
+          "%{A1:${pkgs.alacritty}/bin/alacritty -e ${pkgs.networkmanager}/bin/nmtui:}WIFI: %essid% %{A}";
         format-disconnected = "<label-disconnected>";
         format-disconnected-underline = "#9f78e1";
         label-disconnected =

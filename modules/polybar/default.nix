@@ -119,7 +119,7 @@ in {
       modules-right = "cpu memory pavolume powermenu";
       # notebook: also show wifi, screen brightness and battery
       modules-right-notebook =
-        "cpu memory network backlight pavolume battery powermenu";
+        "memory network backlight pavolume battery";
     in {
       "bar/master" = fonts // normal_bar // tray_setting // i3_showing;
       "bar/notebook" = fonts // normal_bar // tray_setting // i3_showing // {
@@ -247,39 +247,40 @@ in {
         menu-0-2-exec = "sudo shutdown now";
       };
       "module/pavolume" = {
-        type = "custom/script";
-        interval = 1;
-        label = "%output%";
-        exec = "${pkgs.pamixer}/bin/pamixer --get-volume-human";
+        type = "internal/pulseaudio";
+        use-ui-max = false;
+        interval = 2;
+        format-volume = "<label-volume>";
+        label-volume = "%percentage%%";
+        label-muted = "muted";
         click-left = "${pkgs.pamixer}/bin/pamixer --toggle-mute";
         scroll-up = "${pkgs.pamixer}/bin/pamixer --increase 2";
         scroll-down = "${pkgs.pamixer}/bin/pamixer --decrease 2";
-        format-underline = "#0a6cf5";
-        format-foreground = foreground;
+        format-volume-underline = "#0a6cf5";
+        format-muted-underline = "#0a6cf5";
+        format-volume-foreground = foreground;
+        format-muted-foreground = foreground;
       };
 
       # --- modules for the notebook bar ---
       "module/battery" = {
         type = "custom/script";
-        interval = 5;
+        interval = 10;
         exec = "${batteryScript}";
         format-underline = "#5ce05c";
       };
       "module/backlight" = {
-        type = "custom/script";
-        interval = 1;
-        label = "BL %output%";
-        # brightnessctl -m prints "device,class,value,percent,max"; keep the percent
-        exec =
-          "${pkgs.brightnessctl}/bin/brightnessctl -m | ${pkgs.coreutils}/bin/cut -d, -f4";
-        scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-        scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl -n set 5%-"; # -n: never go below 1
+        type = "internal/backlight";
+        card = "intel_backlight";
+        enable-scroll = false;
+        format = "<label>";
+        label = "BL %percentage%%";
         format-underline = "#fba922";
       };
       "module/network" = {
         type = "internal/network";
         interface-type = "wireless"; # auto-detect the wifi interface
-        interval = 3;
+        interval = 5;
 
         # click: open nmtui to pick / connect to a network
         format-connected = "<label-connected>";

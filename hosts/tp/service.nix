@@ -15,15 +15,16 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = [ pkgs.intel-media-driver ];
     };
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.enable = false;
 
   services = {
     pcscd.enable = true;
     gvfs.enable = true; # Nautilus file manager.
-    joycond.enable = true;
+    joycond.enable = false;
     blueman.enable = true;
     pulseaudio = {
       enable = false; # Since we use pipewire
@@ -40,6 +41,10 @@
       mouse = {
         accelProfile = "flat"; # Disable acceleration.
         middleEmulation = false; # Disable emulating middle click using left + right clicks;
+      };
+      touchpad = {
+        tapping = true;
+        disableWhileTyping = true;
       };
     };
 

@@ -19,7 +19,7 @@
   time.timeZone = "Asia/Taipei";
 
   networking = {
-    hostName = user;
+    hostName = "tp";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [
       24800 # deskflow

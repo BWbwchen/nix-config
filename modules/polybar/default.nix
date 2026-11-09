@@ -166,7 +166,7 @@ in {
         type = "internal/memory";
         format = "<label>";
         interval = 2;
-        label = "RAM: %gb_used% / %percentage_used:2%%";
+        label = "RAM: %gb_used% / %percentage_used:2%%  SWAP: %mb_swap_used%";
         format-underline = "#FF4231";
       };
       "module/date" = {

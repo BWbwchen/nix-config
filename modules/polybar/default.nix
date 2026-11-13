@@ -14,32 +14,6 @@ let
   bar = lib.throwIfNot (builtins.elem primaryBar [ "master" "notebook" ])
     ''polybar: primaryBar must be "master" or "notebook", got "${primaryBar}"''
     primaryBar;
-
-  # Not internal/battery: it derives "charging" from the battery's own status and never
-  # reads the AC adapter, so it is wrong e.g. with a charge threshold (AC plugged but
-  # "Not charging"). Read the AC adapter ourselves, with bash builtins only:
-  #   BAT# = AC connected, BAT = running on battery
-  batteryScript = pkgs.writeShellScript "polybar-battery" ''
-    bat=/sys/class/power_supply/BAT0
-    [ -r $bat/capacity ] || exit 0 # no battery: show nothing
-    read -r cap < $bat/capacity
-
-    ac=
-    for d in /sys/class/power_supply/*; do
-      [ -r "$d/type" ] || continue
-      read -r type < "$d/type"
-      if [ "$type" = Mains ] && [ -r "$d/online" ]; then
-        read -r online < "$d/online"
-        [ "$online" = 1 ] && ac='#'
-      fi
-    done
-
-    if [ -z "$ac" ] && [ "$cap" -le 15 ]; then
-      echo "%{F#ff5555}BAT LOW $cap%%{F-}"
-    else
-      echo "BAT$ac $cap%"
-    fi
-  '';
 in {
   services.polybar = {
     package = pkgs.polybar.override {
@@ -63,10 +37,10 @@ in {
 
       fonts = {
         font-0 = "NotoSans-Regular:size=11;0";
-        font-1 = "Material Icons:size=11;2";
-        font-2 = "xos4 Terminus:size=14;0";
-        font-3 = "Siji:pixelsize=11;1";
-        font-4 = "FontAwesome:size=11;0";
+        font-1 = "FontAwesome:size=11;0";
+        font-2 = "Material Icons:size=11;2";
+        font-3 = "xos4 Terminus:size=14;0";
+        font-4 = "Siji:pixelsize=11;1";
       };
 
       tray_setting = {
@@ -250,7 +224,7 @@ in {
         type = "internal/pulseaudio";
         use-ui-max = false;
         interval = 2;
-        format-volume = "<label-volume>";
+        format-volume = "VOL <label-volume>";
         label-volume = "%percentage%%";
         label-muted = "muted";
         click-left = "${pkgs.pamixer}/bin/pamixer --toggle-mute";
@@ -264,10 +238,19 @@ in {
 
       # --- modules for the notebook bar ---
       "module/battery" = {
-        type = "custom/script";
-        interval = 10;
-        exec = "${batteryScript}";
-        format-underline = "#5ce05c";
+        type = "internal/battery";
+        full-at = 100;
+        low-at = 15;
+        battery = "BAT0";
+        adapter = "AC";
+        poll-interval = 5;
+
+        format-charging = "BAT# <label-charging>";
+        format-discharging = "BAT <label-discharging>";
+        label-charging = "%percentage%%  (%consumption%W)";
+        label-discharging = "%percentage%%  (%consumption%W)";
+        format-charging-underline = "#5ce05c";
+        format-discharging-underline = "#5ce05c";
       };
       "module/backlight" = {
         type = "internal/backlight";

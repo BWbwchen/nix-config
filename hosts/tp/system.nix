@@ -50,6 +50,8 @@
       noto-fonts-cjk-sans # for chinese font
       noto-fonts-color-emoji
       nerd-fonts.fira-code
+      material-icons
+      # font-awesome_6
     ];
     fontconfig = {
       enable = true;

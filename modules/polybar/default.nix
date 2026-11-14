@@ -239,18 +239,22 @@ in {
       # --- modules for the notebook bar ---
       "module/battery" = {
         type = "internal/battery";
-        full-at = 100;
-        low-at = 15;
+        full-at = 99;
         battery = "BAT0";
         adapter = "AC";
         poll-interval = 5;
 
         format-charging = "BAT# <label-charging>";
-        format-discharging = "BAT <label-discharging>";
         label-charging = "%percentage%%  (%consumption%W)";
-        label-discharging = "%percentage%%  (%consumption%W)";
         format-charging-underline = "#5ce05c";
+
+        format-discharging = "BAT <label-discharging>";
+        label-discharging = "%percentage%%  (%consumption%W)";
         format-discharging-underline = "#5ce05c";
+
+        format-full = "BAT <label-full>";
+        label-full = "%percentage%%  (%consumption%W)";
+        format-full-underline = "#5ce05c";
       };
       "module/backlight" = {
         type = "internal/backlight";

@@ -31,6 +31,9 @@ in
   # while asleep. Ignored when the firmware has no S3.
   boot.kernelParams = [ "mem_sleep_default=deep" ];
 
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = false;
+
   # --- MacBook-like sleep ------------------------------------------------------
   services.logind.settings.Login = {
     HandleLidSwitch = sleepAction;

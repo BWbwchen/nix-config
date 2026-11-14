@@ -86,6 +86,9 @@
     # stdmanpages
 
     # steam-run
+
+    # monitor power consumption
+    powertop
   ];
 
   home.pointerCursor = {

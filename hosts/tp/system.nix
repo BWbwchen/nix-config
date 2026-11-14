@@ -71,6 +71,7 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
+    # we can use Ctrl-. to type emoji!
     fcitx5.addons = with pkgs; [
       fcitx5-chewing # chewing
       fcitx5-gtk

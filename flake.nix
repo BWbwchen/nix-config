@@ -20,10 +20,6 @@
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -41,7 +37,6 @@
             inherit
               user
               lib
-              pkgs
               pkgs-unstable
               ;
           };
@@ -49,11 +44,12 @@
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.config.allowUnfree = true;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${user} = import ./hosts/${host}/home.nix;
-                extraSpecialArgs = { inherit user pkgs pkgs-unstable; };
+                extraSpecialArgs = { inherit user pkgs-unstable; };
               };
             }
           ];

@@ -69,6 +69,8 @@
 
     # Programming languages
     (python3.withPackages (p: [ p.pip ]))
+    conda
+    uv
     nixfmt
 
     # Developement tools
@@ -79,14 +81,14 @@
     pkgs-unstable.logseq
     pkgs-unstable.telegram-desktop
     deskflow
-    libreoffice
+    pkgs-unstable.libreoffice
     evince # pdf viewer
 
     # man page
-    man-pages
-    man-pages-posix
-    linux-manual
-    stdmanpages
+    #man-pages
+    #man-pages-posix
+    #linux-manual
+    #stdmanpages
 
     # mesa-demos
     steam-run

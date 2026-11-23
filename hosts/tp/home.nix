@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   pkgs-unstable,
   ...
@@ -29,7 +28,6 @@
     gitSignEnabled = false;
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "nvidia-x11" ];
   home.packages = with pkgs; [
     # RDP
     remmina

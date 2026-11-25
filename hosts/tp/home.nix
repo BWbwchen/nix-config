@@ -76,6 +76,8 @@
     deskflow
     # libreoffice
     evince # pdf viewer
+    pkgs-unstable.libreoffice
+    localsend
 
     # man page
     # man-pages

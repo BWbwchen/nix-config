@@ -10,7 +10,10 @@
   security.rtkit.enable = true;
 
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
     # ledger.enable = true; # Allow ledger devices to connect.
     graphics = {
       enable = true;
